@@ -1,2 +1,2 @@
-# Tasca, a bug-tracking application. Create projects, add tasks and comments, view reports, and more
+# Tasca, a bug-tracking application
 To be updated...
