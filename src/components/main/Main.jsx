@@ -1,12 +1,21 @@
 import "./Main.css";
 import MainNav from "./MainNav/MainNav";
 
-function Main({ username }) {
+function Main({ currentPageName, username, updateCurrentPageName }) {
     return (
         <main className="main">
-            <MainNav username={username} />
+            <MainNav
+                currentPageName={currentPageName}
+                username={username}
+                updateCurrentPageName={updateCurrentPageName}
+            />
             <div className="main-content">
-                <h1>main content</h1>
+                {currentPageName === "Dashboard" && <p>Dashboard</p>}
+                {currentPageName === "Projects" && <p>Projects</p>}
+                {currentPageName === "Reports" && <p>Reports</p>}
+                {currentPageName === "Messages" && <p>Messages</p>}
+                {currentPageName === "Settings" && <p>Settings</p>}
+                {currentPageName === "Logout" && <p>Logout</p>}
             </div>
         </main>
     );

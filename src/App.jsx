@@ -43,6 +43,7 @@ function App() {
     // Aside Function (depending on button clicked):
     function openDashboard() {
         console.log("Dashboard Opened!");
+        updateCurrentPageName("Dashboard");
         setDashboardIsOpen(true);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -53,8 +54,8 @@ function App() {
 
     function openProjects() {
         console.log("Projects Opened!");
-        setAsideIsOpen(true);
-
+        // setAsideIsOpen(true);
+        updateCurrentPageName("Projects");
         setDashboardIsOpen(false);
         setProjectsIsOpen(true);
         setReportsIsOpen(false);
@@ -65,6 +66,7 @@ function App() {
 
     function openReports() {
         console.log("Reports Opened!");
+        updateCurrentPageName("Reports");
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(true);
@@ -75,6 +77,7 @@ function App() {
 
     function openMessages() {
         console.log("Messages Opened!");
+        updateCurrentPageName("Messages");
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -85,6 +88,7 @@ function App() {
 
     function openSettings() {
         console.log("Settings Opened!");
+        updateCurrentPageName("Settings");
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -95,6 +99,7 @@ function App() {
 
     function openLogout() {
         console.log("Logout Opened!");
+        updateCurrentPageName("Logout");
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -103,8 +108,13 @@ function App() {
         setLogoutIsOpen(true);
     }
 
+    function updateCurrentPageName(page) {
+        setCurrentPageName(page);
+    }
+
     // --- USER DETAILS ---
-    const [username, setUsername] = useState("User");
+    const [currentPageName, setCurrentPageName] = useState("Dashboard");
+    const [username, setUsername] = useState("Julien");
 
     return (
         <div className="App">
@@ -130,7 +140,11 @@ function App() {
                     />
                 </div>
                 <div className="main-container">
-                    <Main username={username} />
+                    <Main
+                        currentPageName={currentPageName}
+                        username={username}
+                        updateCurrentPageName={(page) => updateCurrentPageName(page)}
+                    />
                 </div>
             </div>
         </div>
