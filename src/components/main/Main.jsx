@@ -2,8 +2,9 @@ import "./Main.css";
 import MainNav from "./MainNav/MainNav";
 import MainPageHeader from "../../reusable/headers/MainPageHeader/MainPageHeader";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import MainFooter from "./MainFooter/MainFooter";
 
-function Main({ currentPageName, username, updateCurrentPageName }) {
+function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
     return (
         <main className="main">
             <MainNav
@@ -63,6 +64,7 @@ function Main({ currentPageName, username, updateCurrentPageName }) {
                     </div>
                 )}
             </div>
+            <MainFooter getYear={getYear} />
         </main>
     );
 }

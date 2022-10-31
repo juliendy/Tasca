@@ -40,15 +40,25 @@ button {
   cursor: pointer;
 }
 
-/* input {
+input {
   border: none;
-} */
+}
 
 input, ::placeholder {
   font-family: var(--font-primary);
 }
 
+button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+}
+
 .btn-transparent {
   background-color: transparent;
   border: none;
+}
+
+.link-transparent {
+  color: inherit;
+  text-decoration: none;
 }
