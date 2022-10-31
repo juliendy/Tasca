@@ -190,20 +190,10 @@ function App() {
         ],
     });
 
-    useEffect(() => {
-        console.log("rerendered");
-    }, [currentPageName]);
-
     function updateMessageIsRead(id) {
         userData.messages.filter((message) => {
             if (message.id === id) {
                 message.isRead = true;
-                setCurrentPageName("Reports");
-                setCurrentPageName("Messages");
-                console.log(`Current page is '${currentPageName}`);
-                console.log('Changed');
-                console.log(userData.messages);
-                console.log(message)
             }
         });
     }
