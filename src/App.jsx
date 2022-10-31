@@ -143,7 +143,9 @@ function App() {
                     <Main
                         currentPageName={currentPageName}
                         username={username}
-                        updateCurrentPageName={(page) => updateCurrentPageName(page)}
+                        updateCurrentPageName={(page) =>
+                            updateCurrentPageName(page)
+                        }
                     />
                 </div>
             </div>
