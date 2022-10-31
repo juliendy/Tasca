@@ -1,5 +1,4 @@
-.dashboard {
-    /* background-color: rgb(240, 240, 240); */
+.reports {
     width: 100%;
     min-height: calc(100vh - 380px);
     padding: 0 50px 50px 50px;

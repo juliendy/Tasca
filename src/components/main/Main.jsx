@@ -3,6 +3,11 @@ import MainNav from "./MainNav/MainNav";
 import MainPageHeader from "../../reusable/headers/MainPageHeader/MainPageHeader";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MainFooter from "./MainFooter/MainFooter";
+import Logout from "./pages/Logout/Logout";
+import Messages from "./pages/Messages/Messages";
+import Projects from "./pages/Projects/Projects";
+import Reports from "./pages/Reports/Reports";
+import Settings from "./pages/Settings/Settings";
 
 function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
     return (
@@ -29,6 +34,7 @@ function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-bolt"
                         />
+                        <Projects />
                     </div>
                 )}
                 {currentPageName === "Reports" && (
@@ -37,6 +43,7 @@ function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-bug"
                         />
+                        <Reports />
                     </div>
                 )}
                 {currentPageName === "Messages" && (
@@ -45,6 +52,7 @@ function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-envelope"
                         />
+                        <Messages />
                     </div>
                 )}
                 {currentPageName === "Settings" && (
@@ -53,6 +61,7 @@ function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-gear"
                         />
+                        <Settings />
                     </div>
                 )}
                 {currentPageName === "Logout" && (
@@ -61,6 +70,7 @@ function Main({ currentPageName, username, updateCurrentPageName, getYear }) {
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-arrow-right-from-bracket"
                         />
+                        <Logout />
                     </div>
                 )}
             </div>
