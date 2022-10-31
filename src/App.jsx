@@ -32,7 +32,7 @@ function App() {
                     }`}
                     handleClick={() => toggleAside()}
                 />
-                <Aside />
+                <Aside asideIsOpen={asideIsOpen}/>
             </div>
             <div className="main-container">
             </div>

@@ -3,6 +3,7 @@
     /* Fonts */
     --font-primary: 'Nunito', sans-serif;
     /* Colours */
+    --color-dropdown-hover: rgb(245, 245, 245)
     --color-light: #f9f9f9;
     --color-dark: #333333;
     --color-gray: #eeeeee;
@@ -20,23 +21,29 @@
 
 /* Universal Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    font-family: var(--font-primary);
+  font-size: 62.5%;
+  font-family: var(--font-primary);
 }
 
 
 /* Universal Buttons */
-button:hover {
-    cursor: pointer;
+button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+}
+
+input, ::placeholder {
+  font-family: var(--font-primary);
 }
 
 .btn-transparent {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }

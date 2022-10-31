@@ -1,7 +1,24 @@
 .aside {
     width: 100%;
+    overflow: hidden;
 }
 
 .aside__logo-container {
-    
+    width: 100%;
+    height: calc(100vh-150px);
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aside__button-container--top {
+    /* background-color: red; */
+    height: 100px;
+    margin-bottom: 50px;
+}
+
+.aside__button-container--bottom {
+    /* background-color: blue; */
+    height: 100px;
 }
