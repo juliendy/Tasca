@@ -5,6 +5,5 @@
 }
 
 .main-content {
-    /* background-color: rgb(243, 243, 243);
-    height: 2000px; */
+    min-height: calc(100vh - 180px);
 }

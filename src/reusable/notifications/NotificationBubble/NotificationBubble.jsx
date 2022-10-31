@@ -1,7 +1,7 @@
 import "./NotificationBubble.css";
 
 function NotificationBubble({ notificationCount }) {
-    console.log(`YOu have ${notificationCount} messages`);
+    console.log(`You have ${notificationCount} messages`);
     return (
         <div
             className={`notification-container ${
