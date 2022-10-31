@@ -194,6 +194,8 @@ function App() {
         userData.messages.filter((message) => {
             if (message.id === id) {
                 message.isRead = true;
+                setUserData({...userData});
+                console.log(message);
             }
         });
     }
