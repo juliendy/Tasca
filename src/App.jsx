@@ -2,6 +2,7 @@ import { useState } from "react";
 import Aside from "./components/aside/Aside";
 import IconButton from "./reusable/buttons/IconButton/IconButton";
 import "./App.css";
+import Main from "./components/main/Main";
 
 function App() {
     const [asideIsOpen, setAsideIsOpen] = useState();
@@ -102,6 +103,9 @@ function App() {
         setLogoutIsOpen(true);
     }
 
+    // --- USER DETAILS ---
+    const [username, setUsername] = useState("User");
+
     return (
         <div className="App">
             <div className="container">
@@ -125,7 +129,9 @@ function App() {
                         handleClick={(title) => asideButtonClicked(title)}
                     />
                 </div>
-                <div className="main-container"></div>
+                <div className="main-container">
+                    <Main username={username} />
+                </div>
             </div>
         </div>
     );
