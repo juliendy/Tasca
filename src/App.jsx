@@ -160,7 +160,30 @@ function App() {
 
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
-    const [username, setUsername] = useState("Julien");
+      const [userData, setUserData] = useState({
+          username: "Julien",
+          projects: [],
+          reports: [],
+          messages: [
+              {
+                  id: 1,
+                  title: "Example Message",
+                  content:
+                      "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                  author: "Botty Bot",
+                  isRead: false,
+                  isDeleted: false,
+              },
+              {
+                  id: 2,
+                  title: "Example Message",
+                  content:
+                      "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                  isRead: true,
+                  isDeleted: false,
+              },
+          ],
+      });
 
     return (
         <div className="App">
@@ -186,16 +209,18 @@ function App() {
                         updateCurrentPageName={() =>
                             updateCurrentPageName("Projects")
                         }
+                        userData={userData}
                     />
                 </div>
                 <div className="main-container">
                     <Main
                         currentPageName={currentPageName}
-                        username={username}
+                        // username={username}
                         updateCurrentPageName={(page) =>
                             updateCurrentPageName(page)
                         }
                         getYear={() => getYear()}
+                        userData={userData}
                     />
                 </div>
             </div>

@@ -4,7 +4,25 @@ import FixedButton from "../../reusable/buttons/FixedButton/FixedButton";
 import NotifyButton from "../../reusable/buttons/NotifyButton/NotifyButton";
 import Dropdown from "./Dropdown";
 
-function Aside({ asideIsOpen, handleClick, dropdownContentIsShown, updateCurrentPageName }) {
+function Aside({ asideIsOpen, handleClick, dropdownContentIsShown, updateCurrentPageName, userData }) {
+    console.log(userData.messages.lenght);
+    const reportData = userData.reports;
+    const messageData = userData.messages;
+
+    // Calculate Unread Notifications
+    let read_reportNotifications = userData.reports
+        ? userData.reports.filter((report) => report.isRead === true)
+        : 0;
+    let unread_reportNotifications = userData.reports
+        ? userData.reports.filter((report) => report.isRead === false)
+        : 0;
+    let read_messageNotifications = userData.messages
+        ? userData.messages.filter((message) => message.isRead === true)
+        : 0;
+    let unread_messageNotifications = userData.messages
+        ? userData.messages.filter((message) => message.isRead === false)
+        : 0;
+
     return (
         <aside className="aside">
             {/* Logo */}
@@ -37,16 +55,17 @@ function Aside({ asideIsOpen, handleClick, dropdownContentIsShown, updateCurrent
                     <NotifyButton
                         icon="fa-solid fa-bug"
                         title="Reports"
-                        notificationCount={21}
+                        notificationCount={unread_reportNotifications}
                         textIsShown={asideIsOpen}
                         handleClick={handleClick}
                     />
                     <NotifyButton
                         icon="fa-solid fa-envelope"
                         title="Messages"
-                        notificationCount={5}
+                        notificationCount={unread_messageNotifications}
                         textIsShown={asideIsOpen}
                         handleClick={handleClick}
+                        userData={userData}
                     />
                 </div>
                 <div className="aside__button-container--bottom">
