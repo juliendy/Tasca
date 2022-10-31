@@ -1,13 +1,13 @@
 import "./FixedButton.css";
 
-function FixedButton({ icon, title, textIsShown }) {
+function FixedButton({ icon, title, textIsShown, handleClick }) {
     function buttonClicked() {
         console.log(`${title} clicked!`);
     }
 
     return (
         <button
-            onClick={() => buttonClicked()}
+            onClick={() => handleClick()}
             className="fixed-btn btn-transparent"
         >
             <i className={icon}></i>
