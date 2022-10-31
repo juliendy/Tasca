@@ -183,6 +183,9 @@ function App() {
                     <Aside
                         asideIsOpen={asideIsOpen}
                         handleClick={(title) => asideButtonClicked(title)}
+                        updateCurrentPageName={() =>
+                            updateCurrentPageName("Projects")
+                        }
                     />
                 </div>
                 <div className="main-container">
