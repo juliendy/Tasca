@@ -5,9 +5,9 @@ import NotifyButton from "../../reusable/buttons/NotifyButton/NotifyButton";
 import Dropdown from "./Dropdown";
 
 function Aside({ asideIsOpen, handleClick, dropdownContentIsShown, updateCurrentPageName, userData }) {
-    console.log(userData.messages.lenght);
-    const reportData = userData.reports;
-    const messageData = userData.messages;
+    // console.log(userData.messages.lenght);
+    // const reportData = userData.reports;
+    // const messageData = userData.messages;
 
     // Calculate Unread Notifications
     let read_reportNotifications = userData.reports

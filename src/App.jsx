@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Aside from "./components/aside/Aside";
 import IconButton from "./reusable/buttons/IconButton/IconButton";
 import "./App.css";
@@ -160,30 +160,53 @@ function App() {
 
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
-      const [userData, setUserData] = useState({
-          username: "Julien",
-          projects: [],
-          reports: [],
-          messages: [
-              {
-                  id: 1,
-                  title: "Example Message",
-                  content:
-                      "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
-                  author: "Botty Bot",
-                  isRead: false,
-                  isDeleted: false,
-              },
-              {
-                  id: 2,
-                  title: "Example Message",
-                  content:
-                      "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
-                  isRead: true,
-                  isDeleted: false,
-              },
-          ],
-      });
+    const [userData, setUserData] = useState({
+        username: "Julien",
+        projects: [],
+        reports: [],
+        messages: [
+            {
+                id: 1,
+                title: "Example Message",
+                content:
+                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                author: "Botty Bot",
+                timeCreated: "14:15",
+                dateCreated: "Monday 31 October, 2022",
+                isRead: false,
+                isDeleted: false,
+            },
+            {
+                id: 2,
+                title: "Example Message",
+                author: "Botty Bot",
+                timeCreated: "14:15",
+                dateCreated: "Monday 31 October, 2022",
+                content:
+                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                isRead: true,
+                isDeleted: false,
+            },
+        ],
+    });
+
+    useEffect(() => {
+        console.log("rerendered");
+    }, [currentPageName]);
+
+    function updateMessageIsRead(id) {
+        userData.messages.filter((message) => {
+            if (message.id === id) {
+                message.isRead = true;
+                setCurrentPageName("Reports");
+                setCurrentPageName("Messages");
+                console.log(`Current page is '${currentPageName}`);
+                console.log('Changed');
+                console.log(userData.messages);
+                console.log(message)
+            }
+        });
+    }
 
     return (
         <div className="App">
@@ -221,6 +244,7 @@ function App() {
                         }
                         getYear={() => getYear()}
                         userData={userData}
+                        updateMessageIsRead={(id) => updateMessageIsRead(id)}
                     />
                 </div>
             </div>
