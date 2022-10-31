@@ -169,7 +169,7 @@ function App() {
                 id: 1,
                 title: "Example Message",
                 content:
-                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
                 author: "Botty Bot",
                 timeCreated: "14:15",
                 dateCreated: "Monday 31 October, 2022",
@@ -180,10 +180,21 @@ function App() {
                 id: 2,
                 title: "Example Message",
                 author: "Botty Bot",
-                timeCreated: "14:15",
+                timeCreated: "14:30",
                 dateCreated: "Monday 31 October, 2022",
                 content:
-                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
+                isRead: false,
+                isDeleted: false,
+            },
+            {
+                id: 3,
+                title: "Example Message",
+                author: "Botty Bot",
+                timeCreated: "16:40",
+                dateCreated: "Monday 31 October, 2022",
+                content:
+                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
                 isRead: true,
                 isDeleted: false,
             },
@@ -194,10 +205,16 @@ function App() {
         userData.messages.filter((message) => {
             if (message.id === id) {
                 message.isRead = true;
-                setUserData({...userData});
+                setUserData({ ...userData });
                 console.log(message);
+                updateAll();
             }
         });
+    }
+
+    // *Function to re-render userData once updated:
+    function updateAll() {
+        setUserData({ ...userData });
     }
 
     return (
