@@ -15,28 +15,30 @@ function Messages({ userData, updateMessageIsRead }) {
             {userData.messages.length !== 0 && (
                 <NotificationBubble
                     notificationCount={unread_messageNotifications.length}
-                    textSingular='message'
-                    textPlural='messages'
+                    textSingular="message"
+                    textPlural="messages"
                 />
             )}
             {/* Has Messages */}
-            {userData.messages.length > 0 &&
-                userData.messages.map((message) => {
-                    return (
-                        <MessageBox
-                            key={message.id}
-                            id={message.id}
-                            title={message.title}
-                            author={message.author}
-                            timeCreated={message.timeCreated}
-                            dateCreated={message.dateCreated}
-                            content={message.content}
-                            isRead={message.isRead}
-                            isDeleted={message.isDeleted}
-                            updateMessageIsRead={updateMessageIsRead}
-                        />
-                    );
-                })}
+            <div className="messages__display">
+                {userData.messages.length > 0 &&
+                    userData.messages.map((message) => {
+                        return (
+                            <MessageBox
+                                key={message.id}
+                                id={message.id}
+                                title={message.title}
+                                author={message.author}
+                                timeCreated={message.timeCreated}
+                                dateCreated={message.dateCreated}
+                                content={message.content}
+                                isRead={message.isRead}
+                                isDeleted={message.isDeleted}
+                                updateMessageIsRead={updateMessageIsRead}
+                            />
+                        );
+                    })}
+            </div>
             {/* No messages */}
             {userData.messages.length === 0 && (
                 <EmptyNotification
