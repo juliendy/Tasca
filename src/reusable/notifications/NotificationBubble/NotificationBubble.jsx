@@ -1,7 +1,7 @@
 import "./NotificationBubble.css";
 
 function NotificationBubble({ notificationCount, textSingular, textPlural }) {
-    console.log(`You have ${notificationCount} messages`);
+    // console.log(`You have ${notificationCount} messages`);
     return (
         <div
             className={`notification-container ${
@@ -20,10 +20,6 @@ function NotificationBubble({ notificationCount, textSingular, textPlural }) {
                     </p>
                 )}
             </div>
-            {/* <div className="messages__notification">
-                {unreadMessages < 0 ? <p className="messages__notification--text">You have <strong>{unreadMessages} new {unreadMessages === 1 ? 'message' : 'messages'}</strong>.</p> : <p className="messages__notification--text">You have {unreadMessages} new messages.</p>}
-                {unread_messageNotifications.length === 0 && <p className="messages__notification--text">You have {unread_messageNotifications.length} new messages.</p>}
-            </div> */}
         </div>
     );
 }

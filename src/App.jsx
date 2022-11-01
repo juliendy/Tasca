@@ -266,6 +266,7 @@ function App() {
         setUserData({ ...userData });
     }
 
+    // Create New Message Function (currently inactive)
     function createNewMessage(
         title,
         author,
@@ -287,6 +288,32 @@ function App() {
             isDeleted: false,
         });
         updateAll();
+        console.log(userData.messages);
+    }
+
+    // Create New Report Function (current inactive)
+    function createNewReport(
+        title,
+        content,
+        timeCreated,
+        dateCreated,
+        reportType,
+        isRead,
+        isDeleted
+    ) {
+        userData.reports.push({
+            id: userData.reports.length + 1,
+            title: "New One",
+            content:
+                "Hello, this is some example report content just to check out how it looks once it is rendered in the broswer. Thanks!",
+            timeCreated: "18:30",
+            dateCreated: "Tuesday 13 August, 2022",
+            reportType: "Update",
+            isRead: false,
+            isDeleted: false,
+        });
+        updateAll();
+        console.log(userData.reports);
     }
 
     return (

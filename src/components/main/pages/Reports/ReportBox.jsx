@@ -17,7 +17,7 @@ function ReportBox({
         setReportIsOpen(!reportIsOpen);
         if (!isRead) {
             updateReportIsRead(id);
-            console.log('Message has now been read!');
+            console.log('Report has now been read!');
         }
     }
 
