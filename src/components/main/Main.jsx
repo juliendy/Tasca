@@ -50,7 +50,7 @@ function Main({
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-bug"
                         />
-                        <Reports />
+                        <Reports userData={userData} />
                     </div>
                 )}
                 {currentPageName === "Messages" && (

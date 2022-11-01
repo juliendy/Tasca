@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useDeferredValue } from "react";
 import Aside from "./components/aside/Aside";
 import IconButton from "./reusable/buttons/IconButton/IconButton";
 import "./App.css";
@@ -160,10 +160,38 @@ function App() {
 
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
+    // const [username, setUsername] = useState('Julien');
     const [userData, setUserData] = useState({
         username: "Julien",
         projects: [],
-        reports: [],
+        reports: [
+            /* REPORT TYPES: 
+            - "User Action" (activity by user - creating new projects, adding/deleting/editing tickets)
+            - "Status Change" (user changes status of ticket)
+            - "Update" (app update - changelog)
+        */
+            {
+                id: 1,
+                title: "Moved '' from To-Do status to 'In Progress' status.",
+                content: null,
+                timeCreated: "14:50",
+                dateCreated: "Tuesday 1 November, 2022",
+                reportType: "Status Change",
+                isRead: false,
+                isDeleted: false,
+            },
+            {
+                id: 2,
+                title: "Updated Dashboard UI",
+                content:
+                    "Hello User! First, thank you for using Taskr. We hope that you are having a pleasant experience organising your tasks. We have exciting news! The Taskr Dashbard has received a funky makeover from our frontend team to make it easier for you to reference your information more easily. Enjoy!",
+                timeCreated: "14:50",
+                dateCreated: "Tuesday 1 November, 2022",
+                reportType: "Update",
+                isRead: true,
+                isDeleted: false,
+            },
+        ],
         messages: [
             {
                 id: 1,
@@ -215,6 +243,29 @@ function App() {
     // *Function to re-render userData once updated:
     function updateAll() {
         setUserData({ ...userData });
+    }
+
+    function createNewMessage(
+        title,
+        author,
+        timeCreated,
+        dateCreated,
+        content,
+        isRead,
+        isDeleted
+    ) {
+        userData.messages.push({
+            id: userData.messages.length + 1,
+            title: "New One",
+            author: "Botty Bot",
+            timeCreated: "18:30",
+            dateCreated: "Tuesday 13 August, 2022",
+            content:
+                "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+            isRead: false,
+            isDeleted: false,
+        });
+        updateAll();
     }
 
     return (
