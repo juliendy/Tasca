@@ -10,14 +10,15 @@ function ReportBox({
     reportType,
     isRead,
     isDeleted,
+    updateReportIsRead
 }) {
     const [reportIsOpen, setReportIsOpen] = useState(false);
     function toggleOpenReport() {
         setReportIsOpen(!reportIsOpen);
-        // if (!isRead) {
-        //     updateMessageIsRead(id);
-        //     console.log('Message has now been read!');
-        // }
+        if (!isRead) {
+            updateReportIsRead(id);
+            console.log('Message has now been read!');
+        }
     }
 
     function getReportClass() {

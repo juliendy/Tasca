@@ -16,6 +16,7 @@ function Main({
     getYear,
     userData,
     updateMessageIsRead,
+    updateReportIsRead
 }) {
     return (
         <main className="main">
@@ -50,7 +51,7 @@ function Main({
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-bug"
                         />
-                        <Reports userData={userData} />
+                        <Reports userData={userData} updateReportIsRead={updateReportIsRead}/>
                     </div>
                 )}
                 {currentPageName === "Messages" && (
