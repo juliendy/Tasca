@@ -21,6 +21,7 @@ function Main({
     openProjectPage,
     currentProjectId,
     openProjects,
+    updateInputValue,
 }) {
     return (
         <main className="main">
@@ -100,8 +101,14 @@ function Main({
                 {currentPageName === "Project Page" && (
                     <div>
                         <ProjectPage
-                            userData={userData}
-                            projectId={currentProjectId}
+                            // userData={userData}
+                            // projectId={currentProjectId}
+                            project={
+                                userData.projects.filter(
+                                    (project) => project.id === currentProjectId
+                                )[0]
+                            }
+                            updateInputValue={updateInputValue}
                         />
                     </div>
                 )}

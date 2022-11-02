@@ -205,6 +205,15 @@ function App() {
         setCurrentPageName(page);
     }
 
+    // ----- EDITING PROJECT VALUES -----
+    // Update Input Value:
+    function updateInputValue(e, target) {
+        console.log(e.target.value);
+        target.title = e.target.value;
+        console.log(target);
+        updateAll();
+    }
+
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
     // const [username, setUsername] = useState('Julien');
@@ -480,7 +489,6 @@ function App() {
                 <div className="main-container">
                     <Main
                         currentPageName={currentPageName}
-                        // username={username}
                         updateCurrentPageName={(page) =>
                             updateCurrentPageName(page)
                         }
@@ -494,6 +502,9 @@ function App() {
                         openProjectPage={(id) => openProjectPage(id)}
                         currentProjectId={currentProjectId}
                         openProjects={() => openProjects()}
+                        updateInputValue={(e, target) =>
+                            updateInputValue(e, target)
+                        }
                     />
                 </div>
             </div>
