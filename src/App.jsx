@@ -176,18 +176,30 @@ function App() {
         setProjectPageIsOpen(false);
     }
 
-      function openProjectPage() {
-          console.log("Project Page Opened!");
-          updateCurrentPageName("Project Page");
+    // OPEN PROJECT
+    const [currentProjectId, setCurrentProjectId] = useState(null);
 
-          setDashboardIsOpen(false);
-          setProjectsIsOpen(false);
-          setReportsIsOpen(false);
-          setMessagesIsOpen(false);
-          setSettingsIsOpen(false);
-          setLogoutIsOpen(false);
-          setProjectPageIsOpen(true);
-      }
+    function openProjectPage(id) {
+        console.log("Project Page Opened!");
+        updateCurrentPageName("Project Page");
+
+        setDashboardIsOpen(false);
+        setProjectsIsOpen(false);
+        setReportsIsOpen(false);
+        setMessagesIsOpen(false);
+        setSettingsIsOpen(false);
+        setLogoutIsOpen(false);
+        setProjectPageIsOpen(true);
+
+        userData.projects.map((project) => {
+            if (project.id === id) {
+                // console.log('ID is ' + project);
+                console.log(project);
+                setCurrentProjectId(project.id);
+            }
+            console.log(`Opening Project ID ${id}`);
+        });
+    }
 
     function updateCurrentPageName(page) {
         setCurrentPageName(page);
@@ -462,6 +474,7 @@ function App() {
                         createNewProject={(projectName) =>
                             createNewProject(projectName)
                         }
+                        openProjectPage={(id) => openProjectPage(id)}
                     />
                 </div>
                 <div className="main-container">
@@ -478,6 +491,9 @@ function App() {
                         createNewProject={(projectName) =>
                             createNewProject(projectName)
                         }
+                        openProjectPage={(id) => openProjectPage(id)}
+                        currentProjectId={currentProjectId}
+                        openProjects={() => openProjects()}
                     />
                 </div>
             </div>

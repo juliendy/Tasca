@@ -11,14 +11,13 @@ function ProjectBox({
     complete,
     isDeleted,
     isComplete,
-    updateCurrentPageName,
+    openProjectPage,
 }) {
     return (
         <button
-            onClick={() => updateCurrentPageName("Project Page")}
+            onClick={() => openProjectPage(id)}
             className="project-box btn-transparent"
         >
-            {" "}
             <div className="project-box__header">
                 <div className="project-box__header--icon-container">
                     <i className="project-box__header--icon fa-solid fa-bolt"></i>

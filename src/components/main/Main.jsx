@@ -18,6 +18,9 @@ function Main({
     updateMessageIsRead,
     updateReportIsRead,
     createNewProject,
+    openProjectPage,
+    currentProjectId,
+    openProjects,
 }) {
     return (
         <main className="main">
@@ -25,6 +28,7 @@ function Main({
                 currentPageName={currentPageName}
                 updateCurrentPageName={updateCurrentPageName}
                 userData={userData}
+                openProjects={openProjects}
             />
             <div className="main-content">
                 {currentPageName === "Dashboard" && (
@@ -47,6 +51,7 @@ function Main({
                             userData={userData}
                             createNewProject={createNewProject}
                             updateCurrentPageName={updateCurrentPageName}
+                            openProjectPage={openProjectPage}
                         />
                     </div>
                 )}
@@ -94,7 +99,10 @@ function Main({
                 )}
                 {currentPageName === "Project Page" && (
                     <div>
-                        <ProjectPage />
+                        <ProjectPage
+                            userData={userData}
+                            projectId={currentProjectId}
+                        />
                     </div>
                 )}
             </div>

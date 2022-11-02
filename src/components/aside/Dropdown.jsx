@@ -9,6 +9,7 @@ function Dropdown({
     updateCurrentPageName,
     createNewProject,
     userData,
+    openProjectPage,
 }) {
     const [dropdownContentIsShown, setDropdownContentIsShown] = useState(false);
     function toggleDropdown() {
@@ -83,6 +84,7 @@ function Dropdown({
                                         key={project.id}
                                         id={project.id}
                                         title={project.title}
+                                        openProjectPage={openProjectPage}
                                     />
                                 );
                             })}
