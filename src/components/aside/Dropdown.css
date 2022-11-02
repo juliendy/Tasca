@@ -23,7 +23,7 @@
 }
 
 .dropdown-btn__icon {
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .dropdown-btn__title {
@@ -39,8 +39,9 @@
     margin-left: 40px;
     border-left: 3px solid var(--color-gray-dark);
     padding-bottom: 10px;
+    max-height: 220px;
+    overflow-y: scroll;
 }
-
 
 .dropdown-content__input-form {
     padding-left: 30px;
