@@ -46,6 +46,7 @@ function Aside({
                             textIsShown={asideIsOpen}
                             updateCurrentPageName={updateCurrentPageName}
                             createNewProject={createNewProject}
+                            userData={userData}
                         />
                     )}
                     {!asideIsOpen && (
