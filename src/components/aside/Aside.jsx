@@ -11,6 +11,7 @@ function Aside({
     updateCurrentPageName,
     userData,
     createNewProject,
+    openProjectPage,
 }) {
     // Calculate Unread Notifications
     let read_reportNotifications = userData.reports
@@ -47,6 +48,7 @@ function Aside({
                             updateCurrentPageName={updateCurrentPageName}
                             createNewProject={createNewProject}
                             userData={userData}
+                            openProjectPage={openProjectPage}
                         />
                     )}
                     {!asideIsOpen && (
@@ -60,17 +62,16 @@ function Aside({
                     <NotifyButton
                         icon="fa-solid fa-bug"
                         title="Reports"
-                        notificationCount={unread_reportNotifications}
+                        notificationCount={unread_reportNotifications.length}
                         textIsShown={asideIsOpen}
                         handleClick={handleClick}
                     />
                     <NotifyButton
                         icon="fa-solid fa-envelope"
                         title="Messages"
-                        notificationCount={unread_messageNotifications}
+                        notificationCount={unread_messageNotifications.length}
                         textIsShown={asideIsOpen}
                         handleClick={handleClick}
-                        userData={userData}
                     />
                 </div>
                 <div className="aside__button-container--bottom">

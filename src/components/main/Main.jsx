@@ -5,6 +5,7 @@ import MainNav from "./MainNav/MainNav";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Logout from "./pages/Logout/Logout";
 import Messages from "./pages/Messages/Messages";
+import ProjectPage from "./pages/Projects/ProjectPage/ProjectPage";
 import Projects from "./pages/Projects/Projects";
 import Reports from "./pages/Reports/Reports";
 import Settings from "./pages/Settings/Settings";
@@ -22,8 +23,8 @@ function Main({
         <main className="main">
             <MainNav
                 currentPageName={currentPageName}
-                userData={userData}
                 updateCurrentPageName={updateCurrentPageName}
+                userData={userData}
             />
             <div className="main-content">
                 {currentPageName === "Dashboard" && (
@@ -45,6 +46,7 @@ function Main({
                         <Projects
                             userData={userData}
                             createNewProject={createNewProject}
+                            updateCurrentPageName={updateCurrentPageName}
                         />
                     </div>
                 )}
@@ -90,10 +92,14 @@ function Main({
                         <Logout />
                     </div>
                 )}
+                {currentPageName === "Project Page" && (
+                    <div>
+                        <ProjectPage />
+                    </div>
+                )}
             </div>
             <MainFooter getYear={getYear} />
         </main>
     );
 }
-
 export default Main;
