@@ -54,6 +54,7 @@ button {
 
 input {
   border: none;
+  font-family: var(--font-primary);
 }
 
 input, ::placeholder {
