@@ -16,6 +16,7 @@ function Main({
     userData,
     updateMessageIsRead,
     updateReportIsRead,
+    createNewProject,
 }) {
     return (
         <main className="main">
@@ -41,7 +42,10 @@ function Main({
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-bolt"
                         />
-                        <Projects userData={userData} />
+                        <Projects
+                            userData={userData}
+                            createNewProject={createNewProject}
+                        />
                     </div>
                 )}
                 {currentPageName === "Reports" && (

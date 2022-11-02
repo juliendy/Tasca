@@ -5,7 +5,7 @@ import "./App.css";
 import Main from "./components/main/Main";
 
 function App() {
-    // --- Dates ---
+    // 📅 Dates 📅
     const days = [
         "Monday",
         "Tuesday",
@@ -49,8 +49,23 @@ function App() {
         const year = getYear();
         return `${day} ${date} ${month}, ${year}`;
     }
-    console.log(getFullDate());
 
+    //  ⏰ Times ⏰
+    function getCurrentTime() {
+        const hours = new Date().getHours();
+        const minutes = new Date().getMinutes();
+
+        if (hours < 10) {
+            hours = `${0}${hours}`;
+        }
+
+        if (minutes < 10) {
+            minutes = `${0}${minutes}`;
+        }
+
+        return `${hours}:${minutes}`;
+    }
+    // -- ASIDE --
     const [asideIsOpen, setAsideIsOpen] = useState();
     function toggleAside() {
         setAsideIsOpen(!setAsideIsOpen);
@@ -336,6 +351,23 @@ function App() {
         console.log(userData.reports);
     }
 
+    // Create New Project
+    function createNewProject(projectName) {
+        userData.projects.push({
+            id: userData.projects.length + 1,
+            title: projectName,
+            author: "Dan",
+            timeCreated: getCurrentTime(),
+            dateCreated: getFullDate(),
+            content:
+                "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+            isRead: false,
+            isDeleted: false,
+        });
+        updateAll();
+        console.log(userData.projects);
+    }
+
     return (
         <div className="App">
             <div className="container">
@@ -361,6 +393,9 @@ function App() {
                             updateCurrentPageName("Projects")
                         }
                         userData={userData}
+                        createNewProject={(projectName) =>
+                            createNewProject(projectName)
+                        }
                     />
                 </div>
                 <div className="main-container">
@@ -374,6 +409,9 @@ function App() {
                         userData={userData}
                         updateMessageIsRead={(id) => updateMessageIsRead(id)}
                         updateReportIsRead={(id) => updateReportIsRead(id)}
+                        createNewProject={(projectName) =>
+                            createNewProject(projectName)
+                        }
                     />
                 </div>
             </div>
