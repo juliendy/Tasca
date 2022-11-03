@@ -23,6 +23,7 @@ function Main({
     openProjects,
     updateInputValue,
     asideIsOpen,
+    createNewTask,
 }) {
     return (
         <main className="main">
