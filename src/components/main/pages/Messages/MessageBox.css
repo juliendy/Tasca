@@ -1,7 +1,7 @@
 .message-container {
     width: 100%;
     margin-bottom: 20px;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .message-container__button {
@@ -43,11 +43,10 @@
 }
 
 .message__details {
-    /* background-color: blue; */
     width: 140px;
     min-height: 60px;
     transform: translateX(100%);
-    transition: 0.3s;
+    transition: .3s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,8 +59,10 @@
     line-height: 1.5;
 }
 
+
 .message-container__button--bottom {
     padding-bottom: 20px;
+    position: relative;
 }
 
 .message-container__content {
@@ -78,6 +79,7 @@
     line-height: 1.5;
     text-align: left;
     margin-bottom: 20px;
+
 }
 
 .message-container__content--info {
@@ -87,6 +89,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Delete Button */
+.message-container__delete-button {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
+.message-container__delete-button--icon {
+    color: var(--color-update);
+    font-size: 20px;
+}
+
+.message-container__delete-button:hover .message-container__delete-button--icon {
+    filter: brightness(90%);
 }
 
 /* Message Hovered */
@@ -107,7 +127,7 @@
 .message-read .message__icon {
     /* color: var(--color-primary-dark);
     color: rgb(168, 233, 233); */
-    opacity: 0.5;
+    opacity: .5;
 }
 
 /* Message Hidden */

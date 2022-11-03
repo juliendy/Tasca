@@ -11,6 +11,7 @@ function MessageBox({
     isRead,
     isDeleted,
     updateMessageIsRead,
+    deleteMessage
 }) {
     const [messageIsOpen, setMessageIsOpen] = useState(false);
 
@@ -18,7 +19,7 @@ function MessageBox({
         setMessageIsOpen(!messageIsOpen);
         if (!isRead) {
             updateMessageIsRead(id);
-            console.log("Message has now been read!");
+            // console.log('Message has now been read!');
         }
     }
 
@@ -50,7 +51,8 @@ function MessageBox({
                             !messageIsOpen ? "Open" : "Close"
                         }`}</p>
                     </div>
-                    <div className="message-container__button--bottom"></div>
+                </div>
+                <div className="message-container__button--bottom">
                     <div className="message-container__content">
                         <p className="message-container__content--text">
                             {content}
@@ -60,6 +62,12 @@ function MessageBox({
                             <p>
                                 {dateCreated} | {timeCreated}
                             </p>
+                            <button
+                                onClick={() => deleteMessage(id)}
+                                className="message-container__delete-button btn-transparent"
+                            >
+                                <i className="message-container__delete-button--icon fa-solid fa-trash-can"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

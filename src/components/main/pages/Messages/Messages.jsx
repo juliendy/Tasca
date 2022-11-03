@@ -3,7 +3,8 @@ import NotificationBubble from "../../../../reusable/notifications/NotificationB
 import MessageBox from "./MessageBox";
 import "./Messages.css";
 
-function Messages({ userData, updateMessageIsRead }) {
+function Messages({ userData, updateMessageIsRead, deleteMessage }) {
+    // console.log(userData.messages);
     let unread_messageNotifications = userData.messages
         ? userData.messages.filter((message) => message.isRead === false)
         : 0;
@@ -18,31 +19,37 @@ function Messages({ userData, updateMessageIsRead }) {
                     textPlural="messages"
                 />
             )}
-            {/* Has Messages */}
+            {/* Has Messages: */}
             <div className="messages__display">
-                {userData.messages.length > 0 &&
-                    userData.messages.map((message) => {
-                        return (
-                            <MessageBox
-                                key={message.id}
-                                id={message.id}
-                                title={message.title}
-                                author={message.author}
-                                timeCreated={message.timeCreated}
-                                dateCreated={message.dateCreated}
-                                content={message.content}
-                                isRead={message.isRead}
-                                isDeleted={message.isDeleted}
-                                updateMessageIsRead={updateMessageIsRead}
-                            />
-                        );
-                    })}
+                {userData.messages.filter(
+                    (message) => message.isDeleted === false
+                ).length > 0 &&
+                    userData.messages
+                        .filter((message) => message.isDeleted === false)
+                        .map((message) => {
+                            return (
+                                <MessageBox
+                                    key={message.id}
+                                    id={message.id}
+                                    title={message.title}
+                                    author={message.author}
+                                    timeCreated={message.timeCreated}
+                                    dateCreated={message.dateCreated}
+                                    content={message.content}
+                                    isRead={message.isRead}
+                                    isDeleted={message.isDeleted}
+                                    updateMessageIsRead={updateMessageIsRead}
+                                    deleteMessage={deleteMessage}
+                                />
+                            );
+                        })}
             </div>
-            {/* No messages */}
-            {userData.messages.length === 0 && (
+            {/* No Messages: */}
+            {userData.messages.filter((message) => message.isDeleted === false)
+                .length === 0 && (
                 <EmptyNotification
                     icon="fa-solid fa-box-open"
-                    text="Looks like you have no messages"
+                    text="Looks like you have no messages!"
                 />
             )}
         </div>
