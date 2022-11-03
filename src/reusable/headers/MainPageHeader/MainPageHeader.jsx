@@ -1,4 +1,4 @@
-import './MainPageHeader.css';
+import "./MainPageHeader.css";
 
 function MainPageHeader({ currentPageName, iconClasses }) {
     return (

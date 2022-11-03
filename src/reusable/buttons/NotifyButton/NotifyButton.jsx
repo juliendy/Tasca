@@ -9,7 +9,7 @@ function NotifyButton({
     handleClick,
 }) {
     function buttonClicked() {
-        console.log(`${title} clicked! (${notificationCount})`);
+        // console.log(`${title} clicked! (${notificationCount})`);
     }
 
     return (

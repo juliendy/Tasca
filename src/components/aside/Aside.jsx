@@ -26,6 +26,7 @@ function Aside({
     let unread_messageNotifications = userData.messages
         ? userData.messages.filter((message) => message.isRead === false)
         : 0;
+
     return (
         <aside className="aside">
             {/* Logo */}
@@ -91,4 +92,5 @@ function Aside({
         </aside>
     );
 }
+
 export default Aside;

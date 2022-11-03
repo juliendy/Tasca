@@ -24,7 +24,7 @@ function MainNav({
             <div className="main-nav__profile">
                 <p className="main-nav__profile-name">{userData.username}</p>
                 <button
-                    onClick={() => updateCurrentPageName("Projects")}
+                    onClick={() => updateCurrentPageName("Settings")}
                     className="main-nav__profile-pic btn-transparent"
                 >
                     <i className="main-nav__profile-pic--icon fa-solid fa-robot"></i>

@@ -11,6 +11,7 @@ function Dropdown({
     userData,
     openProjectPage,
 }) {
+    // Toggle Dropdown
     const [dropdownContentIsShown, setDropdownContentIsShown] = useState(false);
     function toggleDropdown() {
         setDropdownContentIsShown(!dropdownContentIsShown);
@@ -39,18 +40,25 @@ function Dropdown({
             }
         >
             <button
-                onClick={() => toggleDropdown()}
+                onClick={() => updateCurrentPageName("Projects")}
                 className="dropdown-btn btn-transparent"
             >
-                <i className={`dropdown-btn__icon ${icon}`}></i>
-                {textIsShown && (
-                    <h3 className="dropdown-btn__title">{title}</h3>
-                )}
-                {dropdownContentIsShown ? (
-                    <i className="dropdown-btn__icon--small fa-solid fa-caret-up"></i>
-                ) : (
-                    <i className="dropdown-btn__icon--small fa-solid fa-caret-down"></i>
-                )}
+                <div className="dropdown__left">
+                    <i className={`dropdown-btn__icon ${icon}`}></i>
+                    {textIsShown && (
+                        <h3 className="dropdown-btn__title">{title}</h3>
+                    )}
+                </div>
+                <button
+                    onClick={() => toggleDropdown()}
+                    className="dropdown-btn--dropdown btn-transparent"
+                >
+                    {dropdownContentIsShown ? (
+                        <i className="dropdown-btn__icon--small fa-solid fa-caret-up"></i>
+                    ) : (
+                        <i className="dropdown-btn__icon--small fa-solid fa-caret-down"></i>
+                    )}
+                </button>
             </button>
             {dropdownContentIsShown && (
                 <div className="dropdown-content">
@@ -76,20 +84,42 @@ function Dropdown({
                         </button>
                     </form>
                     {/* Dropdown Options */}
-                    {userData.projects.length > 0 && (
+                    {[
+                        ...userData.projects.filter(
+                            (project) => project.isDeleted === false
+                        ),
+                    ].length > 0 && (
                         <div className="dropdown-content__options">
-                            {userData.projects.map((project) => {
-                                return (
-                                    <DropdownOption
-                                        key={project.id}
-                                        id={project.id}
-                                        title={project.title}
-                                        openProjectPage={openProjectPage}
-                                    />
-                                );
-                            })}
+                            {[
+                                ...userData.projects
+                                    .filter(
+                                        (project) => project.isDeleted === false
+                                    )
+                                    .map((project) => {
+                                        return (
+                                            <DropdownOption
+                                                key={project.id}
+                                                id={project.id}
+                                                title={project.title}
+                                                openProjectPage={
+                                                    openProjectPage
+                                                }
+                                            />
+                                        );
+                                    }),
+                            ]}
                         </div>
                     )}
+                    {/* {userData.projects.length > 0 && <div className="dropdown-content__options">
+                    {userData.projects.map(project => {
+                        return <DropdownOption
+                            key={project.id}
+                            id={project.id}
+                            title={project.title}
+                            openProjectPage={openProjectPage}
+                        />
+                    })}
+                </div>} */}
                 </div>
             )}
         </div>

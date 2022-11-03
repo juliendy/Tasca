@@ -8,10 +8,10 @@
     align-items: center; */
     transform: translateX(-500px);
     animation-name: notificationBubbleIn;
-    animation-duration: 0.5s;
+    animation-duration: .5s;
     animation-fill-mode: forwards;
     -webkit-animation-name: notificationBubbleIn;
-    -webkit-animation-duration: 0.5s;
+    -webkit-animation-duration: .5s;
     -webkit-animation-fill-mode: forwards;
     /* transition: 1s; */
 }
@@ -34,6 +34,7 @@
     color: var(--color-gray-darkest);
 }
 
+
 @keyframes notificationBubbleIn {
     0% {
         transform: translate(-500px);
@@ -46,3 +47,4 @@
     100% {
         transform: translate(0);
     }
+}

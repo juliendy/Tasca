@@ -7,7 +7,7 @@ function FixedButton({ icon, title, textIsShown, handleClick }) {
 
     return (
         <button
-            onClick={() => handleClick()}
+            onClick={() => handleClick(title)}
             className="fixed-btn btn-transparent"
         >
             <i className={icon}></i>
