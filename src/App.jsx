@@ -205,12 +205,11 @@ function App() {
         setCurrentPageName(page);
     }
 
-    // ----- EDITING PROJECT VALUES -----
+    // ----- 🔨 EDITING PROJECT VALUES 🔨 -----
     // Update Input Value:
     function updateInputValue(e, target) {
-        console.log(e.target.value);
         target.title = e.target.value;
-        console.log(target);
+        // console.log(target);
         updateAll();
     }
 
@@ -220,48 +219,48 @@ function App() {
     const [userData, setUserData] = useState({
         username: "Julien",
         projects: [
-            // {
-            //     id: 1,
-            //     title: "Portfolio Website",
-            //     author: "Irina",
-            //     timeCreated: getCurrentTime(),
-            //     dateCreated: getFullDate(),
-            //     tasks: {
-            //         toDo: ["Make banner"],
-            //         inProgress: ["Finish project", "upload project"],
-            //         complete: ["Deploy site"],
-            //     },
-            //     isDeleted: false,
-            //     isComplete: false,
-            // },
-            // {
-            //     id: 2,
-            //     title: "Tasca",
-            //     author: "Julien",
-            //     timeCreated: getCurrentTime(),
-            //     dateCreated: getFullDate(),
-            //     tasks: {
-            //         toDo: [],
-            //         inProgress: [],
-            //         complete: [],
-            //     },
-            //     isDeleted: false,
-            //     isComplete: false,
-            // },
-            // {
-            //     id: 3,
-            //     title: "Wordle Clone",
-            //     author: "Robert",
-            //     timeCreated: getCurrentTime(),
-            //     dateCreated: getFullDate(),
-            //     tasks: {
-            //         toDo: [],
-            //         inProgress: [],
-            //         complete: [],
-            //     },
-            //     isDeleted: false,
-            //     isComplete: false,
-            // },
+            {
+                id: 1,
+                title: "Portfolio Website",
+                author: "Irina",
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
+                tasks: {
+                    toDo: ["Make banner"],
+                    inProgress: ["Finish project", "upload project"],
+                    complete: ["Deploy site"],
+                },
+                isDeleted: false,
+                isComplete: false,
+            },
+            {
+                id: 2,
+                title: "Tasca",
+                author: "Julien",
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
+                tasks: {
+                    toDo: [],
+                    inProgress: [],
+                    complete: [],
+                },
+                isDeleted: false,
+                isComplete: false,
+            },
+            {
+                id: 3,
+                title: "Wordle Clone",
+                author: "Robert",
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
+                tasks: {
+                    toDo: [],
+                    inProgress: [],
+                    complete: [],
+                },
+                isDeleted: false,
+                isComplete: false,
+            },
         ],
         reports: [
             /* REPORT TYPES: 
