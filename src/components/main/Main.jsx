@@ -9,6 +9,7 @@ import ProjectPage from "./pages/Projects/ProjectPage/ProjectPage";
 import Projects from "./pages/Projects/Projects";
 import Reports from "./pages/Reports/Reports";
 import Settings from "./pages/Settings/Settings";
+import TaskPage from "./pages/Task/TaskPage";
 
 function Main({
     currentPageName,
@@ -24,6 +25,7 @@ function Main({
     updateInputValue,
     asideIsOpen,
     createNewTask,
+    openTaskPage,
 }) {
     return (
         <main className="main">
@@ -105,14 +107,22 @@ function Main({
                     <div>
                         <ProjectPage
                             // userData={userData}
-                            // projectId={currentProjectId}
+                            currentProjectId={currentProjectId}
                             project={
                                 userData.projects.filter(
                                     (project) => project.id === currentProjectId
                                 )[0]
                             }
                             updateInputValue={updateInputValue}
+                            asideIsOpen={asideIsOpen}
+                            createNewTask={createNewTask}
+                            openTaskPage={openTaskPage}
                         />
+                    </div>
+                )}
+                {currentPageName === "Task Page" && (
+                    <div>
+                        <TaskPage />
                     </div>
                 )}
             </div>

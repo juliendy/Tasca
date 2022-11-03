@@ -8,14 +8,23 @@ function MainNav({
 }) {
     return (
         <div className="main-nav">
-            {currentPageName !== "Project Page" && (
-                <p className="main-nav__text">
-                    Welcome to your <strong>{currentPageName}</strong>.
-                </p>
-            )}
+            {currentPageName !== "Project Page" &&
+                currentPageName !== "Task Page" && (
+                    <p className="main-nav__text">
+                        Welcome to your <strong>{currentPageName}</strong>.
+                    </p>
+                )}
             {currentPageName === "Project Page" && (
                 <button
                     onClick={() => openProjects()}
+                    className="main-nav__back-button btn-transparent"
+                >
+                    <i className="main-nav__back-button--icon fa-solid fa-arrow-left"></i>
+                </button>
+            )}
+            {currentPageName === "Task Page" && (
+                <button
+                    onClick={() => console.log("Back to project")}
                     className="main-nav__back-button btn-transparent"
                 >
                     <i className="main-nav__back-button--icon fa-solid fa-arrow-left"></i>

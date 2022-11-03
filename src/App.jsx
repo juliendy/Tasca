@@ -108,6 +108,7 @@ function App() {
     const [settingsIsOpen, setSettingsIsOpen] = useState(false);
     const [logoutIsOpen, setLogoutIsOpen] = useState(false);
     const [projectPageIsOpen, setProjectPageIsOpen] = useState(false);
+    const [taskPageIsOpen, setTaskPageIsOpen] = useState(false);
 
     // Aside Button Clicked:
     function asideButtonClicked(title) {
@@ -137,6 +138,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     function openProjects() {
@@ -150,6 +152,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     function openReports() {
@@ -162,6 +165,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     function openMessages() {
@@ -174,6 +178,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     function openSettings() {
@@ -186,6 +191,7 @@ function App() {
         setSettingsIsOpen(true);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     function openLogout() {
@@ -198,6 +204,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(true);
         setProjectPageIsOpen(false);
+        setTaskPageIsOpen(false);
     }
 
     // OPEN PROJECT
@@ -214,6 +221,7 @@ function App() {
         setSettingsIsOpen(false);
         setLogoutIsOpen(false);
         setProjectPageIsOpen(true);
+        setTaskPageIsOpen(false);
 
         userData.projects.map((project) => {
             if (project.id === id) {
@@ -223,6 +231,21 @@ function App() {
             }
             console.log(`Opening Project ID ${id}`);
         });
+    }
+
+    // OPEN TASK
+    function openTaskPage() {
+        console.log("Task Page Opened!");
+        updateCurrentPageName("Task Page");
+
+        setDashboardIsOpen(false);
+        setProjectsIsOpen(false);
+        setReportsIsOpen(false);
+        setMessagesIsOpen(false);
+        setSettingsIsOpen(false);
+        setLogoutIsOpen(false);
+        setProjectPageIsOpen(false);
+        setTaskPageIsOpen(true);
     }
 
     function updateCurrentPageName(page) {
@@ -583,6 +606,15 @@ function App() {
         });
     }
 
+    // Open Project Task Page
+    function openTaskPage(taskId, taskType, currentProjectId) {
+        console.log(
+            `This is task ${taskId} of the ${taskType} category for project ${currentProjectId}`
+        );
+        setCurrentPageName("Task Page");
+        // Need to pass these 3 values into Main.js and into TaskPage.js
+    }
+
     return (
         <div className="App">
             <div className="container">
@@ -636,6 +668,9 @@ function App() {
                         asideIsOpen={asideIsOpen}
                         createNewTask={(projectId, taskType) =>
                             createNewTask(projectId, taskType)
+                        }
+                        openTaskPage={(taskId, taskType, currentProjectId) =>
+                            openTaskPage(taskId, taskType, currentProjectId)
                         }
                     />
                 </div>

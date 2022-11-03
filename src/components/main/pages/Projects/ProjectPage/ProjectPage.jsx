@@ -4,53 +4,97 @@ import Projects from '../Projects';
 import './ProjectPage.css';
 import ProjectTask from './ProjectTask';
 
-function ProjectPage({ userData, currentProjectId, project, updateInputValue, asideIsOpen, createNewTask }) {
+function ProjectPage({
+    userData,
+    currentProjectId,
+    project,
+    updateInputValue,
+    asideIsOpen,
+    createNewTask,
+    openTaskPage,
+}) {
+    function openTaskPageClicked(taskId, taskType) {
+        openTaskPage(taskId, taskType, currentProjectId);
+    }
     return (
         <div className="project-page">
             {/* Project Title Information */}
             <div className="main__head">
                 <div className="main__head-info">
-                    <input onChange={(e, target) => updateInputValue(e, project)} className="head-info__title" value={project.title} placeholder="Add Project Name..." type="text" />
-                    <p className="head-info__date">Created on {project.dateCreated} at {project.timeCreated}.</p>
+                    <input
+                        onChange={(e, target) => updateInputValue(e, project)}
+                        className="head-info__title"
+                        value={project.title}
+                        placeholder="Add Project Name..."
+                        type="text"
+                    />
+                    <p className="head-info__date">
+                        Created on {project.dateCreated} at{" "}
+                        {project.timeCreated}.
+                    </p>
                 </div>
             </div>
 
             {/* Project List Content */}
-            <div className={`main__content ${asideIsOpen ? 'main__content--large' : 'main__content--small'}`}>
+            <div
+                className={`main__content ${
+                    asideIsOpen
+                        ? "main__content--large"
+                        : "main__content--small"
+                }`}
+            >
                 <div className="main__list">
                     {/* List Header */}
                     <div className="main__list-header">
                         <i className="main__list-header--icon fa-solid fa-layer-group color--primary"></i>
                         <div className="main__list-header--text">
                             <h3 className="list-header__title">To Do</h3>
-                            <p className="list-header__subtitle">{project.tasks.toDo.length} {project.tasks.toDo.length === 1 ? 'task' : 'tasks'} remaining</p>
+                            <p className="list-header__subtitle">
+                                {project.tasks.toDo.length}{" "}
+                                {project.tasks.toDo.length === 1
+                                    ? "task"
+                                    : "tasks"}{" "}
+                                remaining
+                            </p>
                         </div>
                     </div>
                     {/* List Button */}
-                    <button onClick={() => createNewTask(currentProjectId, 'To Do')} className="list__add-btn btn">
+                    <button
+                        onClick={() => createNewTask(currentProjectId, "To Do")}
+                        className="list__add-btn btn"
+                    >
                         <i className="list__add-btn--icon fa-solid fa-circle-plus"></i>
                         <p className="list__add-btn--text">Add Task</p>
                     </button>
                     {/* List */}
                     <div className="list list--to-do">
                         {/* List Items */}
-                        {project.tasks.toDo.length === 0 && <EmptyNotification
-                            icon='fa-solid fa-box-open'
-                            text='Looks like this list is empty!'
-                        />}
-                        {project.tasks.toDo.length > 0 && project.tasks.toDo.map(task => <ProjectTask
-                            key={task.id}
-                            id={task.id}
-                            title={task.title}
-                            author={task.author}
-                            content={task.content}
-                            tag={task.tag}
-                            timeCreated={task.timeCreated}
-                            dateCreated={task.dateCreated}
-                            dateCreatedShort={task.dateCreatedShort}
-                            comments={task.comments}
-                            isDeleted={task.isDeleted}
-                        />)}
+                        {project.tasks.toDo.length === 0 && (
+                            <EmptyNotification
+                                icon="fa-solid fa-box-open"
+                                text="Looks like this list is empty!"
+                            />
+                        )}
+                        {project.tasks.toDo.length > 0 &&
+                            project.tasks.toDo.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                    taskType="To Do"
+                                    openTaskPageClicked={(taskId, taskType) =>
+                                        openTaskPageClicked(taskId, taskType)
+                                    }
+                                />
+                            ))}
                     </div>
                 </div>
                 <div className="main__list">
@@ -59,34 +103,54 @@ function ProjectPage({ userData, currentProjectId, project, updateInputValue, as
                         <i className="main__list-header--icon fa-solid fa-trowel-bricks color--yellow"></i>
                         <div className="main__list-header--text">
                             <h3 className="list-header__title">In Progress</h3>
-                            <p className="list-header__subtitle">{project.tasks.inProgress.length} {project.tasks.inProgress.length === 1 ? 'task' : 'tasks'} remaining</p>
+                            <p className="list-header__subtitle">
+                                {project.tasks.inProgress.length}{" "}
+                                {project.tasks.inProgress.length === 1
+                                    ? "task"
+                                    : "tasks"}{" "}
+                                remaining
+                            </p>
                         </div>
                     </div>
                     {/* List Button */}
-                    <button onClick={() => createNewTask(currentProjectId, 'In Progress')} className="list__add-btn btn">
+                    <button
+                        onClick={() =>
+                            createNewTask(currentProjectId, "In Progress")
+                        }
+                        className="list__add-btn btn"
+                    >
                         <i className="list__add-btn--icon fa-solid fa-circle-plus"></i>
                         <p className="list__add-btn--text">Add Task</p>
                     </button>
                     {/* List */}
                     <div className="list list--in-progress">
                         {/* List Items */}
-                        {project.tasks.inProgress.length === 0 && <EmptyNotification
-                            icon='fa-solid fa-box-open'
-                            text='Looks like this list is empty!'
-                        />}
-                        {project.tasks.inProgress.length > 0 && project.tasks.inProgress.map(task => <ProjectTask
-                            key={task.id}
-                            id={task.id}
-                            title={task.title}
-                            author={task.author}
-                            content={task.content}
-                            tag={task.tag}
-                            timeCreated={task.timeCreated}
-                            dateCreated={task.dateCreated}
-                            dateCreatedShort={task.dateCreatedShort}
-                            comments={task.comments}
-                            isDeleted={task.isDeleted}
-                        />)}
+                        {project.tasks.inProgress.length === 0 && (
+                            <EmptyNotification
+                                icon="fa-solid fa-box-open"
+                                text="Looks like this list is empty!"
+                            />
+                        )}
+                        {project.tasks.inProgress.length > 0 &&
+                            project.tasks.inProgress.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                    taskType="In Progress"
+                                    openTaskPageClicked={(taskId, taskType) =>
+                                        openTaskPageClicked(taskId, taskType)
+                                    }
+                                />
+                            ))}
                     </div>
                 </div>
                 <div className="main__list">
@@ -95,38 +159,58 @@ function ProjectPage({ userData, currentProjectId, project, updateInputValue, as
                         <i className="main__list-header--icon fa-solid fa-fire color--green"></i>
                         <div className="main__list-header--text">
                             <h3 className="list-header__title">Complete</h3>
-                            <p className="list-header__subtitle">{project.tasks.complete.length} {project.tasks.complete.length === 1 ? 'task' : 'tasks'} remaining</p>
+                            <p className="list-header__subtitle">
+                                {project.tasks.complete.length}{" "}
+                                {project.tasks.complete.length === 1
+                                    ? "task"
+                                    : "tasks"}{" "}
+                                remaining
+                            </p>
                         </div>
                     </div>
                     {/* List Button */}
-                    <button onClick={() => createNewTask(currentProjectId, 'Complete')} className="list__add-btn btn">
+                    <button
+                        onClick={() =>
+                            createNewTask(currentProjectId, "Complete")
+                        }
+                        className="list__add-btn btn"
+                    >
                         <i className="list__add-btn--icon fa-solid fa-circle-plus"></i>
                         <p className="list__add-btn--text">Add Task</p>
                     </button>
                     {/* List */}
                     <div className="list list--complete">
                         {/* List Items */}
-                        {project.tasks.complete.length === 0 && <EmptyNotification
-                            icon='fa-solid fa-box-open'
-                            text='Looks like this list is empty!'
-                        />}
-                        {project.tasks.complete.length > 0 && project.tasks.complete.map(task => <ProjectTask
-                            key={task.id}
-                            id={task.id}
-                            title={task.title}
-                            author={task.author}
-                            content={task.content}
-                            tag={task.tag}
-                            timeCreated={task.timeCreated}
-                            dateCreated={task.dateCreated}
-                            dateCreatedShort={task.dateCreatedShort}
-                            comments={task.comments}
-                            isDeleted={task.isDeleted}
-                        />)}
+                        {project.tasks.complete.length === 0 && (
+                            <EmptyNotification
+                                icon="fa-solid fa-box-open"
+                                text="Looks like this list is empty!"
+                            />
+                        )}
+                        {project.tasks.complete.length > 0 &&
+                            project.tasks.complete.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                    taskType="Complete"
+                                    openTaskPageClicked={(taskId, taskType) =>
+                                        openTaskPageClicked(taskId, taskType)
+                                    }
+                                />
+                            ))}
                     </div>
                 </div>
             </div>
-        </div >
-    )
+        </div>
+    );
 }
 export default ProjectPage;

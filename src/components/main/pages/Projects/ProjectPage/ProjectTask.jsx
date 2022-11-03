@@ -13,10 +13,16 @@ function ProjectTask({
     dateCreatedShort,
     comments,
     isDeleted,
+    taskType,
+    openTaskPageClicked,
 }) {
     return (
         <div className="list-item">
-            <button className="list-item__button btn btn-transparent">
+            <button
+                onClick={() => openTaskPageClicked(id, taskType)}
+                className="list-item__button btn btn-transparent"
+            >
+                {" "}
                 <div className="list-item__top">
                     <h4 className="list-item__title">
                         {title === "" ? "Task" : title}
