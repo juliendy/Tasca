@@ -22,6 +22,7 @@ function Main({
     currentProjectId,
     openProjects,
     updateInputValue,
+    asideIsOpen,
 }) {
     return (
         <main className="main">
@@ -53,6 +54,7 @@ function Main({
                             createNewProject={createNewProject}
                             updateCurrentPageName={updateCurrentPageName}
                             openProjectPage={openProjectPage}
+                            asideIsOpen={asideIsOpen}
                         />
                     </div>
                 )}

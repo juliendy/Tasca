@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import EmptyNotification from "../../../../../reusable/notifications/EmptyNotification/EmptyNotification";
 import "./ProjectPage.css";
+import ProjectTask from "./ProjectTask";
+import Projects from "../Projects";
 
 function ProjectPage({
     userData,
@@ -57,6 +59,22 @@ function ProjectPage({
                                 text="Looks like this list is empty!"
                             />
                         )}
+                        {project.tasks.toDo.length > 0 &&
+                            project.tasks.toDo.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                />
+                            ))}
                     </div>
                 </div>
 
@@ -89,6 +107,22 @@ function ProjectPage({
                                 text="Looks like this list is empty!"
                             />
                         )}
+                        {project.tasks.inProgress.length > 0 &&
+                            project.tasks.inProgress.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                />
+                            ))}
                     </div>
                 </div>
 
@@ -121,6 +155,22 @@ function ProjectPage({
                                 text="Looks like this list is empty!"
                             />
                         )}
+                        {project.tasks.complete.length > 0 &&
+                            project.tasks.complete.map((task) => (
+                                <ProjectTask
+                                    key={task.id}
+                                    id={task.id}
+                                    title={task.title}
+                                    author={task.author}
+                                    content={task.content}
+                                    tag={task.tag}
+                                    timeCreated={task.timeCreated}
+                                    dateCreated={task.dateCreated}
+                                    dateCreatedShort={task.dateCreatedShort}
+                                    comments={task.comments}
+                                    isDeleted={task.isDeleted}
+                                />
+                            ))}
                     </div>
                 </div>
             </div>
