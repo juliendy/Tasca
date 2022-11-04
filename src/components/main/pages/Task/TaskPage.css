@@ -55,7 +55,6 @@
     font-weight: 700;
 }
 
-
 .ticket-info__tag-container {
     display: flex;
     align-items: center;
@@ -150,12 +149,11 @@
     padding-bottom: 50px;
 }
 
-
 /* ToDo Ticket */
 .ticket-container--primary .ticket-info__tag-input,
 .ticket-container--primary .ticket-info__icon,
 .ticket-container--primary .ticket-info__tag-icon {
-    color: var(--color-blue);
+    color: var(--color-update);
 }
 
 /* InProgress Ticket */
@@ -164,7 +162,6 @@
 .ticket-container--yellow .ticket-info__tag-icon {
     color: var(--color-yellow);
 }
-
 
 /* Complete Ticket */
 .ticket-container--green .ticket-info__tag-input,

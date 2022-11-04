@@ -1,4 +1,4 @@
-import { useEffect, useState, useDeferredValue } from "react";
+import { useState } from "react";
 import Aside from "./components/aside/Aside";
 import IconButton from "./reusable/buttons/IconButton/IconButton";
 import "./App.css";
@@ -607,11 +607,17 @@ function App() {
     }
 
     // Open Project Task Page
+    const [currentTaskId, setCurrentTaskId] = useState(null);
+    const [currentTaskType, setCurrentTaskType] = useState(null);
+
     function openTaskPage(taskId, taskType, currentProjectId) {
-        console.log(
-            `This is task ${taskId} of the ${taskType} category for project ${currentProjectId}`
-        );
+        // console.log(
+        //     `This is task ${taskId} of the ${taskType} category for project ${currentProjectId}`
+        // );
         setCurrentPageName("Task Page");
+        setCurrentTaskId(taskId);
+        setCurrentTaskType(taskType);
+        setCurrentProjectId(currentProjectId);
         // Need to pass these 3 values into Main.js and into TaskPage.js
     }
 
@@ -672,6 +678,8 @@ function App() {
                         openTaskPage={(taskId, taskType, currentProjectId) =>
                             openTaskPage(taskId, taskType, currentProjectId)
                         }
+                        currentTaskId={currentTaskId}
+                        currentTaskType={currentTaskType}
                     />
                 </div>
             </div>

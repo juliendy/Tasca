@@ -26,6 +26,8 @@ function Main({
     asideIsOpen,
     createNewTask,
     openTaskPage,
+    currentTaskId,
+    currentTaskType,
 }) {
     return (
         <main className="main">
@@ -122,7 +124,12 @@ function Main({
                 )}
                 {currentPageName === "Task Page" && (
                     <div>
-                        <TaskPage />
+                        <TaskPage
+                            userData={userData}
+                            currentProjectId={currentProjectId}
+                            currentTaskId={currentTaskId}
+                            currentTaskType={currentTaskType}
+                        />
                     </div>
                 )}
             </div>

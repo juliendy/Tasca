@@ -1,8 +1,62 @@
+import { useEffect, useState } from "react";
 import "./TaskPage.css";
 
-function TaskPage() {
+function TaskPage({
+    userData,
+    currentProjectId,
+    currentTaskId,
+    currentTaskType,
+}) {
+    console.log(userData);
+    console.log(
+        `This is Task ${currentTaskId} of the ${currentTaskType} category of project number ${currentProjectId}`
+    );
+
+    let typeStyling;
+    if (currentTaskType === "To Do") {
+        typeStyling = "ticket-container--primary";
+    } else if (currentTaskType === "In Progress") {
+        typeStyling = "ticket-container--yellow";
+    } else if (currentTaskType === "Complete") {
+        typeStyling = "ticket-container--green";
+    }
+
+    const [currentProject, setCurrentProject] = useState("Title");
+    const [currentTask, setCurrentTask] = useState("Task");
+
+    useEffect(() => {
+        userData.projects.filter((project) => {
+            if (project.id === currentProjectId) {
+                setCurrentProject(project);
+                console.log(project);
+                if (currentTaskType === "To Do") {
+                    project.tasks.toDo.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            console.log(task);
+                            setCurrentTask(task);
+                        }
+                    });
+                } else if (currentTaskType === "In Progress") {
+                    project.tasks.inProgress.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            console.log(task);
+                            setCurrentTask(task);
+                        }
+                    });
+                } else if (currentTaskType === "Complete") {
+                    project.tasks.complete.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            console.log(task);
+                            setCurrentTask(task);
+                        }
+                    });
+                }
+            }
+        });
+    }, []);
+
     return (
-        <div className={`ticket-container`}>
+        <div className={`ticket-container ${typeStyling}`}>
             {/* Ticket Title Information */}
             <div className="ticket__head">
                 <div className="ticket__head-info">
@@ -12,14 +66,15 @@ function TaskPage() {
                         <p className="ticket-info__subtitle">
                             Opened a task for{" "}
                             <strong className="ticket-info__text--strong">
-                                Portfolio
+                                {currentProject.title}
                             </strong>
                             .
                         </p>
                     </div>
                     <input
+                        onChange={() => console.log("Title changed...")}
                         className="ticket-info__title"
-                        value="Random Ticket"
+                        value={currentTask.title}
                         placeholder="Add Ticket Name..."
                         type="text"
                     />
@@ -27,9 +82,10 @@ function TaskPage() {
                     <p className="ticket-info__date">
                         Created by{" "}
                         <strong className="ticket-info__text--strong">
-                            Julien
+                            {currentTask.author}
                         </strong>{" "}
-                        on Monday 3 November, 2022 at 17:00.
+                        on {currentTask.dateCreated} at{" "}
+                        {currentTask.timeCreated}.
                     </p>
                 </div>
             </div>
@@ -37,8 +93,9 @@ function TaskPage() {
             <div className="ticket-info__tag-container">
                 <i className="ticket-info__tag-icon fa-solid fa-hashtag"></i>
                 <input
+                    onChange={() => console.log("Tag changed...")}
                     className="ticket-info__tag-input"
-                    value="UIDesign"
+                    value={currentTask.tag}
                     placeholder="Add Tag..."
                     type="text"
                 />
@@ -46,13 +103,18 @@ function TaskPage() {
             {/* Description */}
             <div className="ticket__description-container">
                 <textarea
+                    onChange={() => console.log("Description changed...")}
                     className="ticket__description"
+                    value={currentTask.content}
                     placeholder="Add Description..."
                     type="text"
                 />
             </div>
             <div className="comments-container">
-                <p className="comments-container__header">Comments (3)</p>
+                <p className="comments-container__header">
+                    Comments (
+                    {currentTask.comments ? currentTask.comments.length : 0})
+                </p>{" "}
                 <div className="comments-container__comments">
                     {/* Show Comments: */}
 
