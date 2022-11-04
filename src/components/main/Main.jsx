@@ -28,6 +28,8 @@ function Main({
     openTaskPage,
     currentTaskId,
     currentTaskType,
+    updateCurrentProject,
+    taskBackButtonClicked,
 }) {
     return (
         <main className="main">
@@ -36,6 +38,7 @@ function Main({
                 updateCurrentPageName={updateCurrentPageName}
                 userData={userData}
                 openProjects={openProjects}
+                taskBackButtonClicked={taskBackButtonClicked}
             />
             <div className="main-content">
                 {currentPageName === "Dashboard" && (
@@ -129,6 +132,7 @@ function Main({
                             currentProjectId={currentProjectId}
                             currentTaskId={currentTaskId}
                             currentTaskType={currentTaskType}
+                            updateCurrentProject={updateCurrentProject}
                         />
                     </div>
                 )}

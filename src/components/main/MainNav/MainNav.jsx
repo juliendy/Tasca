@@ -5,6 +5,7 @@ function MainNav({
     updateCurrentPageName,
     userData,
     openProjects,
+    taskBackButtonClicked,
 }) {
     return (
         <div className="main-nav">
@@ -24,7 +25,7 @@ function MainNav({
             )}
             {currentPageName === "Task Page" && (
                 <button
-                    onClick={() => console.log("Back to project")}
+                    onClick={() => taskBackButtonClicked()}
                     className="main-nav__back-button btn-transparent"
                 >
                     <i className="main-nav__back-button--icon fa-solid fa-arrow-left"></i>

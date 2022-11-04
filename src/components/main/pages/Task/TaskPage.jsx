@@ -6,6 +6,7 @@ function TaskPage({
     currentProjectId,
     currentTaskId,
     currentTaskType,
+    updateCurrentProject,
 }) {
     console.log(userData);
     console.log(
@@ -21,6 +22,10 @@ function TaskPage({
         typeStyling = "ticket-container--green";
     }
 
+    function updateCurrentProject(id) {
+        console.log(`THIS IS PROJECT ID ${id}`)
+    }
+
     const [currentProject, setCurrentProject] = useState("Title");
     const [currentTask, setCurrentTask] = useState("Task");
 
@@ -28,6 +33,7 @@ function TaskPage({
         userData.projects.filter((project) => {
             if (project.id === currentProjectId) {
                 setCurrentProject(project);
+                updateCurrentProject(currentProjectId);
                 console.log(project);
                 if (currentTaskType === "To Do") {
                     project.tasks.toDo.filter((task) => {

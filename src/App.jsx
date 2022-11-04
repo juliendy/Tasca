@@ -266,6 +266,7 @@ function App() {
     const [userData, setUserData] = useState({
         username: "Julien",
         projects: [
+            // --- START OF PROJECTS ---
             {
                 id: 1,
                 title: "Portfolio Website",
@@ -363,6 +364,7 @@ function App() {
                 isDeleted: false,
                 isComplete: false,
             },
+            // --- END OF PROJECTS ---
         ],
         reports: [
             /* REPORT TYPES: 
@@ -621,6 +623,15 @@ function App() {
         // Need to pass these 3 values into Main.js and into TaskPage.js
     }
 
+    // Back Button from TaskPage to Project Page ---
+    function updateCurrentProject(id) {
+        setCurrentProjectId(id);
+    }
+    function taskBackButtonClicked() {
+        openProjectPage(currentProjectId);
+    }
+    // ---
+
     return (
         <div className="App">
             <div className="container">
@@ -680,6 +691,8 @@ function App() {
                         }
                         currentTaskId={currentTaskId}
                         currentTaskType={currentTaskType}
+                        updateCurrentProject={(id) => updateCurrentProject(id)}
+                        taskBackButtonClicked={() => taskBackButtonClicked()}
                     />
                 </div>
             </div>
