@@ -30,6 +30,9 @@ function Main({
     currentTaskType,
     updateCurrentProject,
     taskBackButtonClicked,
+    updateTaskTitleValue,
+    updateTaskTagValue,
+    updateTaskContentValue,
 }) {
     return (
         <main className="main">
@@ -133,6 +136,9 @@ function Main({
                             currentTaskId={currentTaskId}
                             currentTaskType={currentTaskType}
                             updateCurrentProject={updateCurrentProject}
+                            updateTaskTitleValue={updateTaskTitleValue}
+                            updateTaskTagValue={updateTaskTagValue}
+                            updateTaskContentValue={updateTaskContentValue}
                         />
                     </div>
                 )}

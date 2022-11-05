@@ -7,6 +7,9 @@ function TaskPage({
     currentTaskId,
     currentTaskType,
     updateCurrentProject,
+    updateTaskTitleValue,
+    updateTaskTagValue,
+    updateTaskContentValue,
 }) {
     console.log(userData);
     console.log(
@@ -23,7 +26,7 @@ function TaskPage({
     }
 
     function updateCurrentProject(id) {
-        console.log(`THIS IS PROJECT ID ${id}`)
+        console.log(`THIS IS PROJECT ID ${id}`);
     }
 
     const [currentProject, setCurrentProject] = useState("Title");
@@ -61,6 +64,24 @@ function TaskPage({
         });
     }, []);
 
+        function handleTaskTitleChange(e) {
+            console.log(e.target.value);
+            console.log(currentTask);
+            updateTaskTitleValue(e, currentTask);
+        }
+
+        function handleTaskTagChange(e) {
+            console.log(e.target.value);
+            console.log(currentTask);
+            updateTaskTagValue(e, currentTask);
+        }
+
+        function handleTaskContentChange(e) {
+            console.log(e.target.value);
+            console.log(currentTask);
+            updateTaskContentValue(e, currentTask);
+        }
+
     return (
         <div className={`ticket-container ${typeStyling}`}>
             {/* Ticket Title Information */}
@@ -78,7 +99,7 @@ function TaskPage({
                         </p>
                     </div>
                     <input
-                        onChange={() => console.log("Title changed...")}
+                        onChange={(e) => handleTaskTitleChange(e)}
                         className="ticket-info__title"
                         value={currentTask.title}
                         placeholder="Add Ticket Name..."
@@ -99,7 +120,7 @@ function TaskPage({
             <div className="ticket-info__tag-container">
                 <i className="ticket-info__tag-icon fa-solid fa-hashtag"></i>
                 <input
-                    onChange={() => console.log("Tag changed...")}
+                    onChange={(e) => handleTaskTagChange(e)}
                     className="ticket-info__tag-input"
                     value={currentTask.tag}
                     placeholder="Add Tag..."
@@ -109,7 +130,7 @@ function TaskPage({
             {/* Description */}
             <div className="ticket__description-container">
                 <textarea
-                    onChange={() => console.log("Description changed...")}
+                    onChange={(e) => handleTaskContentChange(e)}
                     className="ticket__description"
                     value={currentTask.content}
                     placeholder="Add Description..."

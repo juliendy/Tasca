@@ -266,6 +266,7 @@ function App() {
     const [userData, setUserData] = useState({
         username: "Julien",
         projects: [
+            /*
             // --- START OF PROJECTS ---
             {
                 id: 1,
@@ -363,7 +364,7 @@ function App() {
                 },
                 isDeleted: false,
                 isComplete: false,
-            },
+            },*/
             // --- END OF PROJECTS ---
         ],
         reports: [
@@ -632,6 +633,22 @@ function App() {
     }
     // ---
 
+    // UPDATE INPUT VALUES OF TASK PAGE
+    function updateTaskTitleValue(e, target) {
+        // console.log(e.target.value)
+        // console.log(target.title)
+        target.title = e.target.value;
+        updateAll();
+    }
+    function updateTaskTagValue(e, target) {
+        target.tag = e.target.value;
+        updateAll();
+    }
+    function updateTaskContentValue(e, target) {
+        target.content = e.target.value;
+        updateAll();
+    }
+
     return (
         <div className="App">
             <div className="container">
@@ -693,6 +710,15 @@ function App() {
                         currentTaskType={currentTaskType}
                         updateCurrentProject={(id) => updateCurrentProject(id)}
                         taskBackButtonClicked={() => taskBackButtonClicked()}
+                        updateTaskTitleValue={(e, target) =>
+                            updateTaskTitleValue(e, target)
+                        }
+                        updateTaskTagValue={(e, target) =>
+                            updateTaskTagValue(e, target)
+                        }
+                        updateTaskContentValue={(e, target) =>
+                            updateTaskContentValue(e, target)
+                        }
                     />
                 </div>
             </div>
