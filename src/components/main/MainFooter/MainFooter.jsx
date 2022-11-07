@@ -4,16 +4,16 @@ function MainFooter({ getYear }) {
     return (
         <footer className="footer">
             <p className="footer__text">
-                Tasca was created by{" "}
+                Tasca.{" "}
                 <a
                     className="link-transparent"
                     href="https://twitter.com/eggsandbread"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Julien Liam Yasar
+                    juliendy
                 </a>{" "}
-                Copyright &copy; {getYear()}. All rights reserved.
+                &#169; {getYear()}.
             </p>
         </footer>
     );
