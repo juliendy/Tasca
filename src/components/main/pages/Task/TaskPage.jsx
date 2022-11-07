@@ -13,6 +13,7 @@ function TaskPage({
     updateTaskTitleValue,
     updateTaskTagValue,
     updateTaskContentValue,
+    togglePriorityButton,
 }) {
     console.log(userData);
     console.log(
@@ -69,23 +70,33 @@ function TaskPage({
         });
     }, []);
 
-        function handleTaskTitleChange(e) {
-            console.log(e.target.value);
-            console.log(currentTask);
-            updateTaskTitleValue(e, currentTask);
-        }
+    function handleTaskTitleChange(e) {
+        console.log(e.target.value);
+        console.log(currentTask);
+        updateTaskTitleValue(e, currentTask);
+    }
 
-        function handleTaskTagChange(e) {
-            console.log(e.target.value);
-            console.log(currentTask);
-            updateTaskTagValue(e, currentTask);
-        }
+    function handleTaskTagChange(e) {
+        console.log(e.target.value);
+        console.log(currentTask);
+        updateTaskTagValue(e, currentTask);
+    }
 
-        function handleTaskContentChange(e) {
-            console.log(e.target.value);
-            console.log(currentTask);
-            updateTaskContentValue(e, currentTask);
-        }
+    function handleTaskContentChange(e) {
+        console.log(e.target.value);
+        console.log(currentTask);
+        updateTaskContentValue(e, currentTask);
+    }
+
+    function togglePriorityButtonClicked(id) {
+        // console.log(id);
+        togglePriorityButton(
+            currentProjectId,
+            currentTaskType,
+            currentTaskId,
+            id
+        );
+    }
 
     return (
         <div className={`ticket-container ${typeStyling}`}>
@@ -148,6 +159,7 @@ function TaskPage({
                     {currentTask.comments ? currentTask.comments.length : 0})
                 </p>{" "}
                 <div className="comments-container__comments">
+                    {/* Show Comments: */}
                     {currentTask.comments.length !== 0 &&
                         currentTask.comments.map((comment) => (
                             <TaskComment
@@ -160,6 +172,9 @@ function TaskPage({
                                 isPriority={comment.isPriority}
                                 isLiked={comment.isLiked}
                                 isDeleted={comment.isDeleted}
+                                togglePriorityButtonClicked={(id) =>
+                                    togglePriorityButtonClicked(id)
+                                }
                             />
                         ))}
                     {/* No Comments: */}
