@@ -10,6 +10,7 @@ function TaskComment({
     isLiked,
     isDeleted,
     togglePriorityButtonClicked,
+    toggleLikeButtonClicked,
 }) {
     return (
         <div className="comment-box">
@@ -34,7 +35,11 @@ function TaskComment({
                         } comment-box__button--icon fa-solid fa-star`}
                     ></i>
                 </button>
-                <button className="comment-box__button btn-transparent">
+                <button
+                    onClick={() => toggleLikeButtonClicked(id)}
+                    className="comment-box__button btn-transparent"
+                >
+                    {" "}
                     <i
                         className={`${
                             isLiked && "icon-checked"

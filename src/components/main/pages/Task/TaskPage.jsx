@@ -14,6 +14,7 @@ function TaskPage({
     updateTaskTagValue,
     updateTaskContentValue,
     togglePriorityButton,
+    toggleLikeButton,
 }) {
     console.log(userData);
     console.log(
@@ -97,6 +98,10 @@ function TaskPage({
             id
         );
     }
+    function toggleLikeButtonClicked(id) {
+        // console.log(id);
+        toggleLikeButton(currentProjectId, currentTaskType, currentTaskId, id);
+    }
 
     return (
         <div className={`ticket-container ${typeStyling}`}>
@@ -154,6 +159,7 @@ function TaskPage({
                 />
             </div>
             <div className="comments-container">
+                {/* Show Comments: */}
                 <p className="comments-container__header">
                     Comments (
                     {currentTask.comments ? currentTask.comments.length : 0})
@@ -174,6 +180,9 @@ function TaskPage({
                                 isDeleted={comment.isDeleted}
                                 togglePriorityButtonClicked={(id) =>
                                     togglePriorityButtonClicked(id)
+                                }
+                                toggleLikeButtonClicked={(id) =>
+                                    toggleLikeButtonClicked(id)
                                 }
                             />
                         ))}

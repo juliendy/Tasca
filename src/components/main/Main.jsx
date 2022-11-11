@@ -34,6 +34,7 @@ function Main({
     updateTaskTagValue,
     updateTaskContentValue,
     togglePriorityButton,
+    toggleLikeButton,
 }) {
     return (
         <main className="main">
@@ -141,6 +142,7 @@ function Main({
                             updateTaskTagValue={updateTaskTagValue}
                             updateTaskContentValue={updateTaskContentValue}
                             togglePriorityButton={togglePriorityButton}
+                            toggleLikeButton={toggleLikeButton}
                         />
                     </div>
                 )}
