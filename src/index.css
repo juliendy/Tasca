@@ -1,7 +1,11 @@
 /* Variables */
 :root {
     /* Fonts */
-    --font-primary: 'Nunito', sans-serif;
+        /* --font-primary: 'Nunito', sans-serif; */
+    /* --font-primary: 'Poppins', sans-serif; */
+    --font-primary: 'Oswald', sans-serif;
+    /* --font-primary: 'Merriweather', sans-serif; */
+    /* --font-primary: 'Nunito', sans-serif; */
     /* Colours */
     --color-dropdown-hover: rgb(245, 245, 245);
     --color-light: #f9f9f9;
