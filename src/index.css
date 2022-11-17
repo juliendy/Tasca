@@ -1,11 +1,7 @@
 /* Variables */
 :root {
     /* Fonts */
-    /* --font-primary: 'Nunito', sans-serif; */
-    /* --font-primary: 'Poppins', sans-serif; */
-    --font-primary: 'Oswald', sans-serif;
-    /* --font-primary: 'Merriweather', sans-serif; */
-
+    --font-primary: 'Nunito', sans-serif;
     /* Colours */
     --color-dropdown-hover: rgb(245, 245, 245);
     --color-light: #f9f9f9;
@@ -14,14 +10,18 @@
     --color-gray-dark: #cecece;
     --color-gray-darkest: #808080;
     --color-primary: rgb(50, 200, 200);
-    --color-primary-light: rgb(233, 255, 255);
     --color-primary-dark: rgb(38, 180, 180);
+    --color-primary-light: rgb(233, 255, 255);
     --color-orange: rgb(255, 237, 203);
     --color-yellow: rgb(246, 209, 108);
     --color-yellow-light: rgb(255, 248, 227);
     --color-green-dark: rgb(80, 154, 80);
     --color-green: rgb(118, 240, 118);
     --color-green-light: rgb(230, 255, 230);
+
+    /* --color-primary-dark: rgb(183, 15, 15);
+    --color-primary: red;
+    --color-primary-light: rgb(255, 236, 239); */
 
     --color-warning: rgb(248, 92, 92);
     --color-warning-light: rgb(255, 229, 229);
@@ -38,46 +38,45 @@
 
 /* Universal Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  font-size: 62.5%;
-  font-family: var(--font-primary);
+    font-size: 62.5%;
+    font-family: var(--font-primary);
 }
 
 
-/* Universal Buttons */
-button {
-  font-family: var(--font-primary);
-  cursor: pointer;
-}
 
+/* Inputs */
 input {
-  border: none;
-  font-family: var(--font-primary);
+    border: none;
+    font-family: var(--font-primary);
 }
 
-input, ::placeholder {
-  font-family: var(--font-primary);
+input,
+::placeholder {
+    font-family: var(--font-primary);
 }
 
+/* Buttons */
 button {
-  font-family: var(--font-primary);
-  cursor: pointer;
+    font-family: var(--font-primary);
+    cursor: pointer;
 }
 
 .btn-transparent {
-  background-color: transparent;
-  border: none;
+    background-color: transparent;
+    border: none;
 }
 
+/* Links */
 .link-transparent {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 /* Colours */

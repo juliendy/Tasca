@@ -1,19 +1,19 @@
-import { useState } from "react";
-import Aside from "./components/aside/Aside";
-import IconButton from "./reusable/buttons/IconButton/IconButton";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Aside from "./components/aside/Aside";
 import Main from "./components/main/Main";
+import IconButton from "./reusable/buttons/IconButton/IconButton";
 
 function App() {
-    // 📅 Dates 📅
+    // --- 📅 Dates 📅 ---
     const days = [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday",
     ];
     const months = [
         "January",
@@ -45,7 +45,7 @@ function App() {
     ];
 
     function getDay() {
-        return days[new Date().getDay() - 1];
+        return days[new Date().getDay()];
     }
     function getDate() {
         return new Date().getDate();
@@ -69,12 +69,12 @@ function App() {
 
     function getShortDate() {
         const date = getDate();
-        const month = getMonth();
+        const month = getMonth_Short();
         const year = getYear();
         return `${date} ${month}, ${year}`;
     }
 
-    //  ⏰ Times ⏰
+    // --- ⏰ Times ⏰ ---
     function getCurrentTime() {
         let hours = new Date().getHours();
         let minutes = new Date().getMinutes();
@@ -89,13 +89,14 @@ function App() {
 
         return `${hours}:${minutes}`;
     }
-    // -- ASIDE --
-    const [asideIsOpen, setAsideIsOpen] = useState();
-    function toggleAside() {
-        setAsideIsOpen(!setAsideIsOpen);
-        console.log(asideIsOpen);
-    }
 
+    // --- Aside ---
+    const [asideIsOpen, setAsideIsOpen] = useState(true);
+    // Toggle Aside
+    function toggleAside() {
+        setAsideIsOpen(!asideIsOpen);
+    }
+    // Open Aside
     function openAside() {
         setAsideIsOpen(true);
     }
@@ -107,6 +108,7 @@ function App() {
     const [messagesIsOpen, setMessagesIsOpen] = useState(false);
     const [settingsIsOpen, setSettingsIsOpen] = useState(false);
     const [logoutIsOpen, setLogoutIsOpen] = useState(false);
+
     const [projectPageIsOpen, setProjectPageIsOpen] = useState(false);
     const [taskPageIsOpen, setTaskPageIsOpen] = useState(false);
 
@@ -131,6 +133,7 @@ function App() {
     function openDashboard() {
         console.log("Dashboard Opened!");
         updateCurrentPageName("Dashboard");
+
         setDashboardIsOpen(true);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -145,6 +148,7 @@ function App() {
         console.log("Projects Opened!");
         // setAsideIsOpen(true);
         updateCurrentPageName("Projects");
+
         setDashboardIsOpen(false);
         setProjectsIsOpen(true);
         setReportsIsOpen(false);
@@ -158,6 +162,7 @@ function App() {
     function openReports() {
         console.log("Reports Opened!");
         updateCurrentPageName("Reports");
+
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(true);
@@ -171,6 +176,7 @@ function App() {
     function openMessages() {
         console.log("Messages Opened!");
         updateCurrentPageName("Messages");
+
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -184,6 +190,7 @@ function App() {
     function openSettings() {
         console.log("Settings Opened!");
         updateCurrentPageName("Settings");
+
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -197,6 +204,7 @@ function App() {
     function openLogout() {
         console.log("Logout Opened!");
         updateCurrentPageName("Logout");
+
         setDashboardIsOpen(false);
         setProjectsIsOpen(false);
         setReportsIsOpen(false);
@@ -251,7 +259,6 @@ function App() {
     function updateCurrentPageName(page) {
         setCurrentPageName(page);
     }
-
     // ----- 🔨 EDITING PROJECT VALUES 🔨 -----
     // Update Input Value:
     function updateInputValue(e, target) {
@@ -262,71 +269,46 @@ function App() {
 
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
-    // const [username, setUsername] = useState('Julien');
+    // const [username, setUsername] = useState('Daniel');
     const [userData, setUserData] = useState({
-        username: "Julien",
+        username: "Daniel",
         projects: [
             // --- START OF PROJECTS ---
             {
                 id: 1,
-                title: "Portfolio Website",
-                author: "Irina",
+                title: "Getting Started",
+                author: "Botty Bot",
                 timeCreated: getCurrentTime(),
                 dateCreated: getFullDate(),
                 tasks: {
                     toDo: [
                         {
                             id: 1,
-                            title: "Create New Wireframe",
-                            author: "Irina",
+                            title: "Create Your Own Project!",
+                            author: "Botty Bot",
                             content:
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            tag: "UIDesign",
+                                "Use Taskr to plan and organise your own projects.",
+                            tag: "Setup",
                             timeCreated: getCurrentTime(),
                             dateCreated: getFullDate(),
                             dateCreatedShort: getShortDate(),
                             comments: [
                                 {
                                     id: 1,
-                                    author: "Maik",
+                                    author: "Botty Bot",
                                     content:
-                                        "This is some content to check the comment box!",
+                                        "You can create your own project by navigating to the 'Projects' page and pressing the 'Create Project' button!",
                                     dateCreated: getFullDate(),
                                     timeCreated: getCurrentTime(),
-                                    isPriority: true,
+                                    isPriority: false,
                                     isLiked: false,
                                     isDeleted: false,
                                 },
                                 {
                                     id: 2,
-                                    author: "Robert",
+                                    author: "Botty Bot",
                                     content:
-                                        "This is some content to check the comment box!",
-                                    dateCreated: getFullDate(),
-                                    timeCreated: getCurrentTime(),
-                                    isPriority: false,
-                                    isLiked: true,
-                                    isDeleted: false,
-                                },
-                            ],
-                            isDeleted: false,
-                        },
-                        {
-                            id: 2,
-                            title: "Update Email Form",
-                            author: "Julien",
-                            content:
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            tag: "Frontend",
-                            timeCreated: getCurrentTime(),
-                            dateCreated: getFullDate(),
-                            dateCreatedShort: getShortDate(),
-                            comments: [
-                                {
-                                    id: 1,
-                                    author: "Irina",
-                                    content:
-                                        "This is some content to check the comment box!",
+                                        "You can change the status of your current task by pressing the icon next to 'Status'.",
                                     dateCreated: getFullDate(),
                                     timeCreated: getCurrentTime(),
                                     isPriority: false,
@@ -337,182 +319,295 @@ function App() {
                             isDeleted: false,
                         },
                     ],
-                    inProgress: [
-                        {
-                            id: 1,
-                            title: "Add New Projects",
-                            author: "Robert",
-                            content:
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            tag: "Frontend",
-                            timeCreated: getCurrentTime(),
-                            dateCreated: getFullDate(),
-                            dateCreatedShort: getShortDate(),
-                            comments: ["Hello", "Hello"],
-                            isDeleted: false,
-                        },
-                    ],
-                    complete: [
-                        {
-                            id: 1,
-                            title: "Publish Website",
-                            author: "Julien",
-                            content:
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            tag: "Frontend",
-                            timeCreated: getCurrentTime(),
-                            dateCreated: getFullDate(),
-                            dateCreatedShort: getShortDate(),
-                            comments: [
-                                {
-                                    id: 1,
-                                    author: "Irina",
-                                    content:
-                                        "This is some content to check the comment box!",
-                                    dateCreated: getFullDate(),
-                                    timeCreated: getCurrentTime(),
-                                    isPriority: false,
-                                    isLiked: false,
-                                    isDeleted: false,
-                                },
-                            ],
-                            isDeleted: false,
-                        },
-                    ],
-                },
-                isDeleted: false,
-                isComplete: false,
-            },
-            {
-                id: 2,
-                title: "Tasca",
-                author: "Julien",
-                timeCreated: getCurrentTime(),
-                dateCreated: getFullDate(),
-                tasks: {
-                    toDo: [],
                     inProgress: [],
                     complete: [],
                 },
                 isDeleted: false,
                 isComplete: false,
             },
-            {
-                id: 3,
-                title: "Wordle Clone",
-                author: "Robert",
-                timeCreated: getCurrentTime(),
-                dateCreated: getFullDate(),
-                tasks: {
-                    toDo: [],
-                    inProgress: [],
-                    complete: [],
-                },
-                isDeleted: false,
-                isComplete: false,
-            },
+            /*
+        {
+          "id": 1,
+          "title": "Portfolio Website",
+          "author": "Michael",
+          "timeCreated": getCurrentTime(),
+          "dateCreated": getFullDate(),
+          "tasks": {
+            "toDo": [
+              {
+                "id": 1,
+                "title": "Create New Wireframe",
+                "author": "Daniel",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "tag": "UIDesign",
+                "timeCreated": getCurrentTime(),
+                "dateCreated": getFullDate(),
+                "dateCreatedShort": getShortDate(),
+                "comments": [
+                  {
+                    "id": 1,
+                    "author": "Mike",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": true,
+                    "isLiked": false,
+                    "isDeleted": false
+                  },
+                  {
+                    "id": 2,
+                    "author": "Dan",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": false,
+                    "isLiked": true,
+                    "isDeleted": false
+                  },
+                  {
+                    "id": 3,
+                    "author": "Dan",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": false,
+                    "isLiked": false,
+                    "isDeleted": false
+                  },
+                ],
+                "isDeleted": false
+              },
+              {
+                "id": 2,
+                "title": "Update Email Form",
+                "author": "Michael",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "tag": "Frontend",
+                "timeCreated": getCurrentTime(),
+                "dateCreated": getFullDate(),
+                "dateCreatedShort": getShortDate(),
+                "comments": [
+                  {
+                    "id": 1,
+                    "author": "Dan",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": false,
+                    "isLiked": false,
+                    "isDeleted": false
+                  },
+                ],
+                "isDeleted": false
+              }
+            ],
+            "inProgress": [
+              {
+                "id": 1,
+                "title": "Add New Projects",
+                "author": "Daniel",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "tag": "Frontend",
+                "timeCreated": getCurrentTime(),
+                "dateCreated": getFullDate(),
+                "dateCreatedShort": getShortDate(),
+                "comments": [
+                  {
+                    "id": 1,
+                    "author": "Dan",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": true,
+                    "isLiked": true,
+                    "isDeleted": false
+                  },
+                ],
+                "isDeleted": false
+              }
+            ],
+            "complete": [
+              {
+                "id": 1,
+                "title": "Publish Website",
+                "author": "Daniel",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "tag": "Frontend",
+                "timeCreated": getCurrentTime(),
+                "dateCreated": getFullDate(),
+                "dateCreatedShort": getShortDate(),
+                "comments": [
+                  {
+                    "id": 1,
+                    "author": "Steve",
+                    "content": "This is some content to check the comment box!",
+                    "dateCreated": getFullDate(),
+                    "timeCreated": getCurrentTime(),
+                    "isPriority": false,
+                    "isLiked": false,
+                    "isDeleted": false
+                  },
+                ],
+                "isDeleted": false
+              }
+            ]
+          },
+          "isDeleted": false,
+          "isComplete": false
+        },
+        {
+          "id": 2,
+          "title": "Taskr",
+          "author": "Michael",
+          "timeCreated": getCurrentTime(),
+          "dateCreated": getFullDate(),
+          "tasks": {
+            "toDo": [],
+            "inProgress": [],
+            "complete": []
+          },
+          "isDeleted": false,
+          "isComplete": false
+        },
+        {
+          "id": 3,
+          "title": "Wordle Clone",
+          "author": "Michael",
+          "timeCreated": getCurrentTime(),
+          "dateCreated": getFullDate(),
+          "tasks": {
+            "toDo": [],
+            "inProgress": [],
+            "complete": []
+          },
+          "isDeleted": false,
+          "isComplete": false
+        },
+        */
             // --- END OF PROJECTS ---
         ],
         reports: [
-            /* REPORT TYPES: 
-            - "User Action" (activity by user - creating new projects, adding/deleting/editing tickets)
-            - "Status Change" (user changes status of ticket)
-            - "Update" (app update - changelog)
-        */
             {
                 id: 1,
-                title: "Moved 'Update Header' from 'To-Do' status to 'In Progress'.",
-                content: null,
-                timeCreated: "14:50",
-                dateCreated: "Tuesday 1 November, 2022",
-                reportType: "Status Change",
-                isRead: false,
-                isDeleted: false,
-            },
-            {
-                id: 2,
-                title: "Updated Dashboard UI",
+                title: "Taskr v1.0.0",
                 content:
-                    "Hello User! Thank you for using Tasca. We hope that you are having a pleasant experience organising your tasks. We have exciting news! The Tasca Dashbard has received a funky makeover from our frontend team to make it easier for you to reference your information more easily. Enjoy!",
-                timeCreated: "15:50",
-                dateCreated: "Tuesday 1 November, 2022",
+                    "Taskr is currently in Beta stage production. Current functions include creating your own projects, adding and updating tasks, and checking messages and reports.",
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
                 reportType: "Update",
                 isRead: false,
                 isDeleted: false,
             },
-            {
-                id: 3,
-                title: "Created a New Project: 'Portfolio'.",
-                content: null,
-                timeCreated: "10:40",
-                dateCreated: "Tuesday 1 November, 2022",
-                reportType: "User Update",
-                isRead: false,
-                isDeleted: false,
-            },
-            {
-                id: 4,
-                title: "Project 'Portfolio' Deleted",
-                content: null,
-                timeCreated: "10:50",
-                dateCreated: "Tuesday 1 November, 2022",
-                reportType: "Warning",
-                isRead: false,
-                isDeleted: false,
-            },
-            {
-                id: 5,
-                title: "Finished Ticket for 'Portfolio'.",
-                content: null,
-                timeCreated: "11:30",
-                dateCreated: "Tuesday 1 November, 2022",
-                reportType: "Complete",
-                isRead: false,
-                isDeleted: false,
-            },
+            /*{
+          "id": 1,
+          "title": "Moved 'Update Header' from 'To-Do' to 'In Progress'.",
+          "content": null,
+          "timeCreated": "13:05",
+          "dateCreated": "Wednesday 5 July, 2022",
+          "reportType": "Status Change",
+          "isRead": false,
+          "isDeleted": false
+        },
+        {
+          "id": 2,
+          "title": "Updated Dashboard UI",
+          "content": "Hello User! First, thank you for using Taskr. We hope that you are having a pleasant experience organising your tasks. We have exciting news! The Taskr Dashbard has received a funky makeover from our frontend team to make it easier for you to reference your information more easily. Enjoy!",
+          "timeCreated": "17:10",
+          "dateCreated": "Friday 12 August, 2022",
+          "reportType": "Update",
+          "isRead": false,
+          "isDeleted": false
+        },
+        {
+          "id": 3,
+          "title": "Created a New Project: 'Portfolio'.",
+          "content": null,
+          "timeCreated": "10:30",
+          "dateCreated": "Saturday 13 August, 2022",
+          "reportType": "User Update",
+          "isRead": false,
+          "isDeleted": false
+        },
+        {
+          "id": 4,
+          "title": "Project 'Portfolio' Deleted",
+          "content": null,
+          "timeCreated": "10:30",
+          "dateCreated": "Saturday 13 August, 2022",
+          "reportType": "Warning",
+          "isRead": false,
+          "isDeleted": false
+        },
+        {
+          "id": 5,
+          "title": "Finished Ticket for 'Portfolio'.",
+          "content": null,
+          "timeCreated": "10:30",
+          "dateCreated": "Saturday 13 August, 2022",
+          "reportType": "Complete",
+          "isRead": false,
+          "isDeleted": false
+        }*/
         ],
         messages: [
             {
                 id: 1,
-                title: "Example Message",
-                content:
-                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
+                title: "Welcome to Taskr!",
+                content: `Hello! Welcome to Taskr - the place to break down your projects into smaller, manageable tasks! Navigate to the 'Projects' page and get started right away! We hope you have a pleasant experience organising your work!`,
                 author: "Botty Bot",
-                timeCreated: "14:15",
-                dateCreated: "Monday 31 October, 2022",
-                isRead: true,
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
+                isRead: false,
                 isDeleted: false,
             },
             {
                 id: 2,
-                title: "Example Message",
-                author: "Botty Bot",
-                timeCreated: "14:30",
-                dateCreated: "Monday 31 October, 2022",
-                content:
-                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
+                title: "Thank you for your support!",
+                content: `Hi, my name is Daniel Healy, and I'm the creator of Taskr. I decided to create this project to get more organised with my own portfolio projects. It was also my way of learning React.js by effectively jumping in at the deep end and learning as I went. If you are here, then I would like to thank you for your support and for taking the time to check out my project! Feel free to connect with me over on Twitter @web_dev_dan (link in the footer at the bottom of the page), as I intend to add more features and improve Taskr in the coming weeks and months. I'd be delighted to hear from you if you have any comments or suggestions.`,
+                author: "Daniel Healy",
+                timeCreated: getCurrentTime(),
+                dateCreated: getFullDate(),
                 isRead: false,
                 isDeleted: false,
             },
-            {
-                id: 3,
-                title: "Example Message",
-                author: "Botty Bot",
-                timeCreated: "16:40",
-                dateCreated: "Monday 31 October, 2022",
-                content:
-                    "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. ",
-                isRead: false,
-                isDeleted: false,
-            },
+            /*{
+          "id": 1,
+          "title": "Example Message",
+          "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+          "author": "Botty Bot",
+          "timeCreated": "11:15",
+          "dateCreated": "Monday 12 August, 2022",
+          "isRead": true,
+          "isDeleted": false
+        },
+        {
+          "id": 2,
+          "title": "Example Message",
+          "author": "Botty Bot",
+          "timeCreated": '18:30',
+          "dateCreated": 'Tuesday 13 August, 2022',
+          "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+          "isRead": false,
+          "isDeleted": false
+        },
+        {
+          "id": 3,
+          "title": "Example Message",
+          "author": "Botty Bot",
+          "timeCreated": '18:30',
+          "dateCreated": 'Tuesday 13 August, 2022',
+          "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
+          "isRead": false,
+          "isDeleted": false
+        }*/
         ],
     });
 
+    // Change Message isRead to true:
     function updateMessageIsRead(id) {
         userData.messages.filter((message) => {
             if (message.id === id) {
                 message.isRead = true;
-                setUserData({ ...userData });
                 console.log(message);
                 updateAll();
             }
@@ -572,14 +667,13 @@ function App() {
     ) {
         userData.reports.push({
             id: userData.reports.length + 1,
-            title: "New One",
-            content:
-                "Hello, this is some example report content just to check out how it looks once it is rendered in the broswer. Thanks!",
-            timeCreated: "18:30",
-            dateCreated: "Tuesday 13 August, 2022",
-            reportType: "Update",
-            isRead: false,
-            isDeleted: false,
+            title: title,
+            content: content,
+            timeCreated: timeCreated,
+            dateCreated: dateCreated,
+            reportType: reportType,
+            isRead: isRead,
+            isDeleted: isDeleted,
         });
         updateAll();
         console.log(userData.reports);
@@ -590,7 +684,7 @@ function App() {
         userData.projects.push({
             id: userData.projects.length + 1,
             title: projectName,
-            author: "userData.username",
+            author: userData.username,
             timeCreated: getCurrentTime(),
             dateCreated: getFullDate(),
             tasks: {
@@ -602,6 +696,7 @@ function App() {
             isComplete: false,
         });
         updateAll();
+        openProjectPage(userData.projects.length);
         console.log(userData.projects);
     }
 
@@ -623,6 +718,7 @@ function App() {
                         comments: [],
                         isDeleted: false,
                     });
+                    openTaskPage(project.tasks.toDo.length, "To Do", projectId);
                 } else if (taskType === "In Progress") {
                     project.tasks.inProgress.push({
                         id: project.tasks.inProgress.length + 1,
@@ -636,6 +732,11 @@ function App() {
                         comments: [],
                         isDeleted: false,
                     });
+                    openTaskPage(
+                        project.tasks.inProgress.length,
+                        "In Progress",
+                        projectId
+                    );
                 } else if (taskType === "Complete") {
                     project.tasks.complete.push({
                         id: project.tasks.complete.length + 1,
@@ -649,6 +750,11 @@ function App() {
                         comments: [],
                         isDeleted: false,
                     });
+                    openTaskPage(
+                        project.tasks.complete.length,
+                        "Complete",
+                        projectId
+                    );
                 }
                 updateAll();
             }
@@ -660,9 +766,7 @@ function App() {
     const [currentTaskType, setCurrentTaskType] = useState(null);
 
     function openTaskPage(taskId, taskType, currentProjectId) {
-        // console.log(
-        //     `This is task ${taskId} of the ${taskType} category for project ${currentProjectId}`
-        // );
+        // console.log(`This is task ${taskId} of the ${taskType} category for project ${currentProjectId}`);
         setCurrentPageName("Task Page");
         setCurrentTaskId(taskId);
         setCurrentTaskType(taskType);
@@ -694,6 +798,7 @@ function App() {
         target.content = e.target.value;
         updateAll();
     }
+
     // Toggle Priority Button (Comment)
     function togglePriorityButton(
         currentProjectId,
@@ -797,6 +902,355 @@ function App() {
         updateAll();
     }
 
+    // Delete Button (Comment)
+    function deleteCommentButton(
+        currentProjectId,
+        currentTaskType,
+        currentTaskId,
+        id
+    ) {
+        userData.projects.filter((project) => {
+            if (project.id === currentProjectId) {
+                if (currentTaskType === "To Do") {
+                    // console.log(project.tasks.toDo);
+                    project.tasks.toDo.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            // console.log(task.comments);
+                            task.comments.filter((comment) => {
+                                if (comment.id === id) {
+                                    comment.isDeleted = true;
+                                }
+                            });
+                        }
+                    });
+                } else if (currentTaskType === "In Progress") {
+                    // console.log(project.tasks.inProgress);
+                    project.tasks.inProgress.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            // console.log(task.comments);
+                            task.comments.filter((comment) => {
+                                if (comment.id === id) {
+                                    comment.isDeleted = true;
+                                }
+                            });
+                        }
+                    });
+                } else if (currentTaskType === "Complete") {
+                    // console.log(project.tasks.complete);
+                    project.tasks.complete.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            // console.log(task.comments);
+                            task.comments.filter((comment) => {
+                                if (comment.id === id) {
+                                    comment.isDeleted = true;
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        updateAll();
+    }
+
+    // Create New Comment
+    const [commentInputValue, setCommentInputValue] = useState("");
+    function updateCommentInputValue(e) {
+        setCommentInputValue(e.target.value);
+        updateAll();
+    }
+    function createNewComment(
+        currentProjectId,
+        currentTaskId,
+        currentTaskType
+    ) {
+        if (commentInputValue !== "") {
+            userData.projects.filter((project) => {
+                if (project.id === currentProjectId) {
+                    if (currentTaskType === "To Do") {
+                        // console.log(project.tasks.toDo);
+                        project.tasks.toDo.filter((task) => {
+                            if (task.id === currentTaskId) {
+                                // console.log(task);
+                                task.comments.push({
+                                    id: task.comments.length + 1,
+                                    author: userData.username,
+                                    content: commentInputValue,
+                                    dateCreated: getFullDate(),
+                                    timeCreated: getCurrentTime(),
+                                    isPriority: false,
+                                    isLiked: false,
+                                    isDeleted: false,
+                                });
+                            }
+                        });
+                    } else if (currentTaskType === "In Progress") {
+                        // console.log(project.tasks.inProgress);
+                        project.tasks.inProgress.filter((task) => {
+                            if (task.id === currentTaskId) {
+                                // console.log(task);
+                                task.comments.push({
+                                    id: task.comments.length + 1,
+                                    author: userData.username,
+                                    content: commentInputValue,
+                                    dateCreated: getFullDate(),
+                                    timeCreated: getCurrentTime(),
+                                    isPriority: false,
+                                    isLiked: false,
+                                    isDeleted: false,
+                                });
+                            }
+                        });
+                    } else if (currentTaskType === "Complete") {
+                        // console.log(project.tasks.complete);
+                        project.tasks.complete.filter((task) => {
+                            if (task.id === currentTaskId) {
+                                // console.log(task);
+                                task.comments.push({
+                                    id: task.comments.length + 1,
+                                    author: userData.username,
+                                    content: commentInputValue,
+                                    dateCreated: getFullDate(),
+                                    timeCreated: getCurrentTime(),
+                                    isPriority: false,
+                                    isLiked: false,
+                                    isDeleted: false,
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+            setCommentInputValue("");
+            updateAll();
+        }
+    }
+
+    function deleteProjectButton(currentProjectId) {
+        // console.log(currentProjectId)
+        userData.projects.filter((project) => {
+            if (project.id === currentProjectId) {
+                project.isDeleted = true;
+                // console.log(project);
+                createNewReport(
+                    "Project Deleted",
+                    `'${project.title}' was deleted by ${userData.username}.`,
+                    getCurrentTime(),
+                    getFullDate(),
+                    "Warning",
+                    false,
+                    false
+                );
+            }
+        });
+        updateAll();
+        setCurrentPageName("Projects");
+    }
+
+    function deleteTaskButton(
+        currentProjectId,
+        currentTaskId,
+        currentTaskType
+    ) {
+        // console.log('Task deleted')
+        userData.projects.filter((project) => {
+            if (project.id === currentProjectId) {
+                // console.log(project)
+                if (currentTaskType === "To Do") {
+                    project.tasks.toDo.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            task.isDeleted = true;
+                            // console.log(task)
+                            createNewReport(
+                                "Task Deleted",
+                                `A task with the title of '${task.title}' was deleted from project '${project.title}' by ${userData.username}. This task was in the 'To Do' category at the time of deletion.`,
+                                getCurrentTime(),
+                                getFullDate(),
+                                "Warning",
+                                false,
+                                false
+                            );
+                        }
+                    });
+                } else if (currentTaskType === "In Progress") {
+                    project.tasks.inProgress.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            task.isDeleted = true;
+                            // console.log(task)
+                            createNewReport(
+                                "Task Deleted",
+                                `A task with the title of '${task.title}' was deleted from project '${project.title}' by ${userData.username}. This task was in the 'In Progress' category at the time of deletion.`,
+                                getCurrentTime(),
+                                getFullDate(),
+                                "Warning",
+                                false,
+                                false
+                            );
+                        }
+                    });
+                } else if (currentTaskType === "Complete") {
+                    project.tasks.complete.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            task.isDeleted = true;
+                            // console.log(task)
+                            createNewReport(
+                                "Task Deleted",
+                                `A task with the title of '${task.title}' was deleted from project '${project.title}' by ${userData.username}. This task was in the 'Complete' category at the time of deletion.`,
+                                getCurrentTime(),
+                                getFullDate(),
+                                "Warning",
+                                false,
+                                false
+                            );
+                        }
+                    });
+                }
+            }
+        });
+        updateAll();
+        setCurrentPageName("Project Page");
+    }
+
+    // Change Task Status
+    function changeTaskStatus(
+        changeToStatus,
+        currentProjectId,
+        currentTaskType,
+        currentTaskId
+    ) {
+        // console.log(changeToStatus);
+        userData.projects.filter((project) => {
+            if (project.id === currentProjectId) {
+                // console.log(project);
+                if (currentTaskType === "To Do") {
+                    project.tasks.toDo.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            const newTask = { ...task };
+                            if (changeToStatus === "To Do") {
+                                newTask.id = project.tasks.toDo.length + 1;
+                                project.tasks.toDo.push(newTask);
+                                openTaskPage(
+                                    project.tasks.toDo.length,
+                                    "To Do",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "In Progress") {
+                                newTask.id =
+                                    project.tasks.inProgress.length + 1;
+                                project.tasks.inProgress.push(newTask);
+                                openTaskPage(
+                                    project.tasks.inProgress.length,
+                                    "In Progress",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "Complete") {
+                                newTask.id = project.tasks.complete.length + 1;
+                                project.tasks.complete.push(newTask);
+                                openTaskPage(
+                                    project.tasks.complete.length,
+                                    "Complete",
+                                    newTask.id
+                                );
+                            }
+                            task.isDeleted = true;
+                            // console.log(project);
+                        }
+                    });
+                } else if (currentTaskType === "In Progress") {
+                    project.tasks.inProgress.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            const newTask = { ...task };
+                            if (changeToStatus === "To Do") {
+                                newTask.id = project.tasks.toDo.length + 1;
+                                project.tasks.toDo.push(newTask);
+                                openTaskPage(
+                                    project.tasks.toDo.length,
+                                    "To Do",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "In Progress") {
+                                newTask.id =
+                                    project.tasks.inProgress.length + 1;
+                                project.tasks.inProgress.push(newTask);
+                                openTaskPage(
+                                    project.tasks.inProgress.length,
+                                    "In Progress",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "Complete") {
+                                newTask.id = project.tasks.complete.length + 1;
+                                project.tasks.complete.push(newTask);
+                                openTaskPage(
+                                    project.tasks.complete.length,
+                                    "Complete",
+                                    newTask.id
+                                );
+                            }
+                            task.isDeleted = true;
+                            // console.log(task);
+                        }
+                    });
+                } else if (currentTaskType === "Complete") {
+                    project.tasks.complete.filter((task) => {
+                        if (task.id === currentTaskId) {
+                            const newTask = { ...task };
+                            if (changeToStatus === "To Do") {
+                                newTask.id = project.tasks.toDo.length + 1;
+                                project.tasks.toDo.push(newTask);
+                                openTaskPage(
+                                    project.tasks.toDo.length,
+                                    "To Do",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "In Progress") {
+                                newTask.id =
+                                    project.tasks.inProgress.length + 1;
+                                project.tasks.inProgress.push(newTask);
+                                openTaskPage(
+                                    project.tasks.inProgress.length,
+                                    "In Progress",
+                                    newTask.id
+                                );
+                            } else if (changeToStatus === "Complete") {
+                                newTask.id = project.tasks.complete.length + 1;
+                                project.tasks.complete.push(newTask);
+                                openTaskPage(
+                                    project.tasks.complete.length,
+                                    "Complete",
+                                    newTask.id
+                                );
+                            }
+                            task.isDeleted = true;
+                            // console.log(task);
+                        }
+                    });
+                }
+            }
+        });
+        setCurrentProjectId(currentProjectId);
+        updateAll();
+    }
+
+    function deleteMessage(id) {
+        // console.log(`Message ${id} is deleted`);
+        userData.messages.filter((message) => {
+            if (message.id === id) {
+                message.isDeleted = true;
+            }
+        });
+        updateAll();
+    }
+
+    function deleteReport(id) {
+        // console.log(`Report ${id} is deleted`);
+        userData.reports.filter((report) => {
+            if (report.id === id) {
+                report.isDeleted = true;
+            }
+        });
+        updateAll();
+    }
+
     return (
         <div className="App">
             <div className="container">
@@ -811,7 +1265,7 @@ function App() {
                         iconClass={`aside-container__button ${
                             asideIsOpen
                                 ? "fa-solid fa-angles-left"
-                                : "fa-angles-right"
+                                : "fa-solid fa-angles-right"
                         }`}
                         handleClick={() => toggleAside()}
                     />
@@ -893,6 +1347,65 @@ function App() {
                                 id
                             )
                         }
+                        deleteCommentButton={(
+                            currentProjectId,
+                            currentTaskType,
+                            currentTaskId,
+                            id
+                        ) =>
+                            deleteCommentButton(
+                                currentProjectId,
+                                currentTaskType,
+                                currentTaskId,
+                                id
+                            )
+                        }
+                        createNewComment={(
+                            currentProjectId,
+                            currentTaskId,
+                            currentTaskType
+                        ) =>
+                            createNewComment(
+                                currentProjectId,
+                                currentTaskId,
+                                currentTaskType
+                            )
+                        }
+                        updateCommentInputValue={(e) =>
+                            updateCommentInputValue(e)
+                        }
+                        commentInputValue={commentInputValue}
+                        deleteProjectButton={(currentProjectId) =>
+                            deleteProjectButton(currentProjectId)
+                        }
+                        deleteTaskButton={(
+                            currentProjectId,
+                            currentTaskId,
+                            currentTaskType
+                        ) =>
+                            deleteTaskButton(
+                                currentProjectId,
+                                currentTaskId,
+                                currentTaskType
+                            )
+                        }
+                        changeTaskStatus={(
+                            changeToStatus,
+                            currentProjectId,
+                            currentTaskType,
+                            currentTaskId
+                        ) =>
+                            changeTaskStatus(
+                                changeToStatus,
+                                currentProjectId,
+                                currentTaskType,
+                                currentTaskId
+                            )
+                        }
+                        openReports={() => openReports()}
+                        openMessages={() => openMessages()}
+                        deleteMessage={(id) => deleteMessage(id)}
+                        deleteReport={(id) => deleteReport(id)}
                     />
                 </div>
             </div>
