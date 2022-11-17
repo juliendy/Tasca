@@ -73,6 +73,8 @@
     margin-right: 10px;
 }
 
+
+
 .list-item:hover {
     background-color: var(--color-primary-light);
     border-top: 3px solid var(--color-primary);
@@ -92,6 +94,7 @@
     background-color: var(--color-green-light);
     border-top: 3px solid var(--color-green);
 }
+
 
 .list--in-progress .list-item__tag {
     color: var(--color-yellow);

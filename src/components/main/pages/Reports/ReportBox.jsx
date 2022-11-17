@@ -10,14 +10,15 @@ function ReportBox({
     reportType,
     isRead,
     isDeleted,
-    updateReportIsRead
+    updateReportIsRead,
+    deleteReport,
 }) {
     const [reportIsOpen, setReportIsOpen] = useState(false);
     function toggleOpenReport() {
         setReportIsOpen(!reportIsOpen);
         if (!isRead) {
             updateReportIsRead(id);
-            console.log('Report has now been read!');
+            console.log("Report has now been read!");
         }
     }
 
@@ -74,6 +75,7 @@ function ReportBox({
                         }`}</p>
                     </div>
                 </div>
+
                 <div className="report-container__button--bottom">
                     <div className="report-container__content">
                         {content && (
@@ -86,6 +88,12 @@ function ReportBox({
                             <p>
                                 {dateCreated} | {timeCreated}
                             </p>
+                            <button
+                                onClick={() => deleteReport(id)}
+                                className="report-container__delete-button btn-transparent"
+                            >
+                                <i className="report-container__delete-button--icon fa-solid fa-trash-can"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

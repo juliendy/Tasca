@@ -16,7 +16,7 @@
     font-size: 2rem;
     padding: 10px 20px;
     border-bottom: 2px solid var(--color-gray-dark);
-    transition: 0.5s;
+    transition: .5s;
 }
 
 .projects__add-form:hover .add-form__input {
@@ -51,9 +51,9 @@
     overflow-x: scroll;
 }
 
-.projects__overview {
+/* .projects__overview {
     background-color: green;
-}
+} */
 
 .projects__project-list {
     display: grid;

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import ButtonStrong from "../../../../reusable/buttons/ButtonStrong/ButtonStrong";
+import { useState, useEffect } from "react";
 import EmptyNotification from "../../../../reusable/notifications/EmptyNotification/EmptyNotification";
 import TaskComment from "./TaskComment";
 import "./TaskPage.css";
+import ButtonStrong from "../../../../reusable/buttons/ButtonStrong/ButtonStrong";
+// import { toHaveAccessibleDescription } from "@testing-library/jest-dom/dist/matchers";
 
 function TaskPage({
     userData,
@@ -15,6 +16,12 @@ function TaskPage({
     updateTaskContentValue,
     togglePriorityButton,
     toggleLikeButton,
+    deleteCommentButton,
+    createNewComment,
+    updateCommentInputValue,
+    commentInputValue,
+    deleteTaskButton,
+    changeTaskStatus,
 }) {
     console.log(userData);
     console.log(
@@ -28,10 +35,6 @@ function TaskPage({
         typeStyling = "ticket-container--yellow";
     } else if (currentTaskType === "Complete") {
         typeStyling = "ticket-container--green";
-    }
-
-    function updateCurrentProject(id) {
-        console.log(`THIS IS PROJECT ID ${id}`);
     }
 
     const [currentProject, setCurrentProject] = useState("Title");
@@ -72,25 +75,19 @@ function TaskPage({
     }, []);
 
     function handleTaskTitleChange(e) {
-        console.log(e.target.value);
-        console.log(currentTask);
         updateTaskTitleValue(e, currentTask);
     }
 
     function handleTaskTagChange(e) {
-        console.log(e.target.value);
-        console.log(currentTask);
         updateTaskTagValue(e, currentTask);
     }
 
     function handleTaskContentChange(e) {
-        console.log(e.target.value);
-        console.log(currentTask);
         updateTaskContentValue(e, currentTask);
     }
 
+    // Toggle Priority Button (Comment)
     function togglePriorityButtonClicked(id) {
-        // console.log(id);
         togglePriorityButton(
             currentProjectId,
             currentTaskType,
@@ -98,9 +95,68 @@ function TaskPage({
             id
         );
     }
+
+    // Toggle Like Button (Comment)
     function toggleLikeButtonClicked(id) {
-        // console.log(id);
         toggleLikeButton(currentProjectId, currentTaskType, currentTaskId, id);
+    }
+
+    // Delete Button (Comment)
+    function deleteCommentButtonClicked(id) {
+        deleteCommentButton(
+            currentProjectId,
+            currentTaskType,
+            currentTaskId,
+            id
+        );
+    }
+
+    // Create New Comment Button Clicked
+    function createNewCommentClicked(e) {
+        e.preventDefault();
+        createNewComment(currentProjectId, currentTaskId, currentTaskType);
+    }
+
+    // Delete Task
+    const [deleteButtonIsOpen, setDeleteButtonIsOpen] = useState(false);
+    function deleteTaskButtonClicked(
+        currentProjectId,
+        currentTaskId,
+        currentTaskType
+    ) {
+        setDeleteButtonIsOpen(true);
+        setTimeout(() => {
+            setDeleteButtonIsOpen(false);
+        }, 3000);
+    }
+
+    function closeDeleteOptions() {
+        setDeleteButtonIsOpen(false);
+    }
+
+    function deleteTaskCheckButton(
+        currentProjectId,
+        currentTaskId,
+        currentTaskType
+    ) {
+        setDeleteButtonIsOpen(false);
+        deleteTaskButton(currentProjectId, currentTaskId, currentTaskType);
+    }
+
+    // Show Status Buttons
+    const [statusButtonsShown, setStatusButtonsShown] = useState(false);
+    function openStatusButtonsClicked() {
+        setStatusButtonsShown(true);
+    }
+    function changeStatusButtonClicked(changeToStatus) {
+        // console.log(changeToStatus);
+        changeTaskStatus(
+            changeToStatus,
+            currentProjectId,
+            currentTaskType,
+            currentTaskId
+        );
+        setStatusButtonsShown(false);
     }
 
     return (
@@ -119,13 +175,55 @@ function TaskPage({
                             .
                         </p>
                     </div>
-                    <input
-                        onChange={(e) => handleTaskTitleChange(e)}
-                        className="ticket-info__title"
-                        value={currentTask.title}
-                        placeholder="Add Ticket Name..."
-                        type="text"
-                    />
+                    <div className="main__head-info--top">
+                        <input
+                            onChange={(e) => handleTaskTitleChange(e)}
+                            className="ticket-info__title"
+                            value={currentTask.title}
+                            placeholder="Add Ticket Name..."
+                            type="text"
+                        />
+                        {!deleteButtonIsOpen && (
+                            <button
+                                onClick={() =>
+                                    deleteTaskButtonClicked(
+                                        currentProjectId,
+                                        currentTaskId,
+                                        currentTaskType
+                                    )
+                                }
+                                className="button--delete btn-transparent"
+                            >
+                                <i className="fa-solid fa-trash-can"></i>
+                            </button>
+                        )}
+                        {deleteButtonIsOpen && (
+                            <div className="delete__options-container">
+                                <div className="options-container__bar--outer">
+                                    <div className="options-container__bar--inner"></div>
+                                </div>
+                                <button
+                                    onClick={() =>
+                                        deleteTaskCheckButton(
+                                            currentProjectId,
+                                            currentTaskId,
+                                            currentTaskType
+                                        )
+                                    }
+                                    className="options-container__button btn-transparent"
+                                >
+                                    <i className="options-container__button--delete fa-solid fa-check"></i>
+                                </button>
+                                <button
+                                    onClick={() => closeDeleteOptions()}
+                                    className="options-container__button btn-transparent"
+                                >
+                                    <i className="options-container__button--close fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                    {/* <input onChange={(e) => handleTaskTitleChange(e)} className="ticket-info__title" value={currentTask.title} placeholder="Add Ticket Name..." type="text" /> */}
                     {/* Author / Date / Time */}
                     <p className="ticket-info__date">
                         Created by{" "}
@@ -138,15 +236,85 @@ function TaskPage({
                 </div>
             </div>
             {/* Tag */}
-            <div className="ticket-info__tag-container">
-                <i className="ticket-info__tag-icon fa-solid fa-hashtag"></i>
-                <input
-                    onChange={(e) => handleTaskTagChange(e)}
-                    className="ticket-info__tag-input"
-                    value={currentTask.tag}
-                    placeholder="Add Tag..."
-                    type="text"
-                />
+            <div className="ticket-info__tag-and-status">
+                <div className="ticket-info__tag-container">
+                    <i className="ticket-info__tag-icon fa-solid fa-hashtag"></i>
+                    <input
+                        onChange={(e) => handleTaskTagChange(e)}
+                        className="ticket-info__tag-input"
+                        value={currentTask.tag}
+                        placeholder="Add Tag..."
+                        type="text"
+                    />
+                </div>
+                {statusButtonsShown && (
+                    <div className="ticket-info__button-container">
+                        <p className="ticket-info__status-text">Status:</p>
+                        <button
+                            onClick={() => changeStatusButtonClicked("To Do")}
+                            className={`${
+                                currentTaskType === "To Do" &&
+                                "to-do-button--selected"
+                            } ticket-info__status-button hover--blue btn-transparent`}
+                        >
+                            <i className="fa-solid fa-layer-group"></i>
+                            {/* <p>To Do</p> */}
+                        </button>
+                        <button
+                            onClick={() =>
+                                changeStatusButtonClicked("In Progress")
+                            }
+                            className={`${
+                                currentTaskType === "In Progress" &&
+                                "in-progress-button--selected"
+                            } ticket-info__status-button hover--yellow btn-transparent`}
+                        >
+                            <i className="fa-solid fa-trowel-bricks"></i>
+                            {/* <p>In Progress</p> */}
+                        </button>
+                        <button
+                            onClick={() =>
+                                changeStatusButtonClicked("Complete")
+                            }
+                            className={`${
+                                currentTaskType === "Complete" &&
+                                "complete-button--selected"
+                            } ticket-info__status-button hover--green btn-transparent`}
+                        >
+                            <i className="fa-solid fa-fire"></i>
+                            {/* <p>Complete</p> */}
+                        </button>
+                    </div>
+                )}
+                {!statusButtonsShown && (
+                    <div className="ticket-info__button-container">
+                        <p className="ticket-info__status-text">Status:</p>
+                        {currentTaskType === "To Do" && (
+                            <button
+                                onClick={() => openStatusButtonsClicked()}
+                                className="ticket-info__status-button--small btn-transparent"
+                            >
+                                <i className="fa-solid fa-layer-group"></i>
+                            </button>
+                        )}
+                        {currentTaskType === "In Progress" && (
+                            <button
+                                onClick={() => openStatusButtonsClicked()}
+                                className="ticket-info__status-button--small btn-transparent"
+                            >
+                                <i className="fa-solid fa-trowel-bricks"></i>
+                            </button>
+                        )}
+                        {currentTaskType === "Complete" && (
+                            <button
+                                onClick={() => openStatusButtonsClicked()}
+                                className="ticket-info__status-button--small btn-transparent"
+                            >
+                                <i className="fa-solid fa-fire"></i>
+                            </button>
+                        )}
+                    </div>
+                )}
             </div>
             {/* Description */}
             <div className="ticket__description-container">
@@ -159,54 +327,78 @@ function TaskPage({
                 />
             </div>
             <div className="comments-container">
-                {/* Show Comments: */}
+                {/* <p className="comments-container__header">Comments ({currentTask.comments ? currentTask.comments.length : 0})</p> */}
                 <p className="comments-container__header">
                     Comments (
-                    {currentTask.comments ? currentTask.comments.length : 0})
-                </p>{" "}
+                    {
+                        [
+                            ...currentTask.comments.filter(
+                                (task) => task.isDeleted === false
+                            ),
+                        ].length
+                    }
+                    )
+                </p>
+
                 <div className="comments-container__comments">
                     {/* Show Comments: */}
                     {currentTask.comments.length !== 0 &&
-                        currentTask.comments.map((comment) => (
-                            <TaskComment
-                                key={comment.id}
-                                id={comment.id}
-                                author={comment.author}
-                                content={comment.content}
-                                dateCreated={comment.dateCreated}
-                                timeCreated={comment.timeCreated}
-                                isPriority={comment.isPriority}
-                                isLiked={comment.isLiked}
-                                isDeleted={comment.isDeleted}
-                                togglePriorityButtonClicked={(id) =>
-                                    togglePriorityButtonClicked(id)
-                                }
-                                toggleLikeButtonClicked={(id) =>
-                                    toggleLikeButtonClicked(id)
-                                }
-                            />
-                        ))}
-                    {/* No Comments: */}
-                    {currentTask.comments.length === 0 && (
-                        <EmptyNotification
-                            icon="fa-solid fa-envelope-open"
-                            text="Looks like you have no comments!"
-                        />
-                    )}
+                        currentTask.comments.map((comment) => {
+                            if (comment.isDeleted === false) {
+                                return (
+                                    <TaskComment
+                                        key={comment.id}
+                                        id={comment.id}
+                                        author={comment.author}
+                                        content={comment.content}
+                                        dateCreated={comment.dateCreated}
+                                        timeCreated={comment.timeCreated}
+                                        isPriority={comment.isPriority}
+                                        isLiked={comment.isLiked}
+                                        isDeleted={comment.isDeleted}
+                                        togglePriorityButtonClicked={(id) =>
+                                            togglePriorityButtonClicked(id)
+                                        }
+                                        toggleLikeButtonClicked={(id) =>
+                                            toggleLikeButtonClicked(id)
+                                        }
+                                        deleteCommentButtonClicked={(id) =>
+                                            deleteCommentButtonClicked(id)
+                                        }
+                                    />
+                                );
+                            }
+                        })}
                     {/* Add New Task Form */}
                     <form className="task-page__add-task-form">
                         <input
+                            onChange={(e) => updateCommentInputValue(e)}
                             className="add-task-form__input"
+                            value={commentInputValue}
                             placeholder="Add a Comment..."
                         ></input>
                         <ButtonStrong
                             iconClass="fa-solid fa-plus"
                             text="Add Comment"
-                            handleClick={() =>
-                                console.log("Add Task Button Clicked!")
-                            }
+                            handleClick={(e) => createNewCommentClicked(e)}
                         />
                     </form>
+                    {/* No Comments: */}
+                    {[
+                        ...currentTask.comments.filter(
+                            (task) => task.isDeleted === false
+                        ),
+                    ].length === 0 && (
+                        <EmptyNotification
+                            icon="fa-solid fa-envelope-open"
+                            text="Looks like you have no comments!"
+                        />
+                    )}
+
+                    {/* {currentTask.comments.length === 0 && <EmptyNotification
+                        icon='fa-solid fa-envelope-open'
+                        text='Looks like you have no comments!'
+                    />} */}
                 </div>
             </div>
         </div>

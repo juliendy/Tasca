@@ -269,15 +269,15 @@ function App() {
 
     // --- USER DETAILS ---
     const [currentPageName, setCurrentPageName] = useState("Dashboard");
-    // const [username, setUsername] = useState('Daniel');
+    // const [username, setUsername] = useState('Julien');
     const [userData, setUserData] = useState({
-        username: "Daniel",
+        username: "Julien",
         projects: [
             // --- START OF PROJECTS ---
             {
                 id: 1,
                 title: "Getting Started",
-                author: "Botty Bot",
+                author: "Botty",
                 timeCreated: getCurrentTime(),
                 dateCreated: getFullDate(),
                 tasks: {
@@ -285,9 +285,9 @@ function App() {
                         {
                             id: 1,
                             title: "Create Your Own Project!",
-                            author: "Botty Bot",
+                            author: "Botty",
                             content:
-                                "Use Taskr to plan and organise your own projects.",
+                                "Use Tasca to plan and organise your own projects.",
                             tag: "Setup",
                             timeCreated: getCurrentTime(),
                             dateCreated: getFullDate(),
@@ -295,7 +295,7 @@ function App() {
                             comments: [
                                 {
                                     id: 1,
-                                    author: "Botty Bot",
+                                    author: "Botty",
                                     content:
                                         "You can create your own project by navigating to the 'Projects' page and pressing the 'Create Project' button!",
                                     dateCreated: getFullDate(),
@@ -306,7 +306,7 @@ function App() {
                                 },
                                 {
                                     id: 2,
-                                    author: "Botty Bot",
+                                    author: "Botty",
                                     content:
                                         "You can change the status of your current task by pressing the icon next to 'Status'.",
                                     dateCreated: getFullDate(),
@@ -329,7 +329,7 @@ function App() {
         {
           "id": 1,
           "title": "Portfolio Website",
-          "author": "Michael",
+          "author": "Robert",
           "timeCreated": getCurrentTime(),
           "dateCreated": getFullDate(),
           "tasks": {
@@ -337,7 +337,7 @@ function App() {
               {
                 "id": 1,
                 "title": "Create New Wireframe",
-                "author": "Daniel",
+                "author": "Julien",
                 "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "tag": "UIDesign",
                 "timeCreated": getCurrentTime(),
@@ -380,7 +380,7 @@ function App() {
               {
                 "id": 2,
                 "title": "Update Email Form",
-                "author": "Michael",
+                "author": "Robert",
                 "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "tag": "Frontend",
                 "timeCreated": getCurrentTime(),
@@ -405,7 +405,7 @@ function App() {
               {
                 "id": 1,
                 "title": "Add New Projects",
-                "author": "Daniel",
+                "author": "Julien",
                 "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "tag": "Frontend",
                 "timeCreated": getCurrentTime(),
@@ -430,7 +430,7 @@ function App() {
               {
                 "id": 1,
                 "title": "Publish Website",
-                "author": "Daniel",
+                "author": "Julien",
                 "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "tag": "Frontend",
                 "timeCreated": getCurrentTime(),
@@ -439,7 +439,7 @@ function App() {
                 "comments": [
                   {
                     "id": 1,
-                    "author": "Steve",
+                    "author": "Irina",
                     "content": "This is some content to check the comment box!",
                     "dateCreated": getFullDate(),
                     "timeCreated": getCurrentTime(),
@@ -457,8 +457,8 @@ function App() {
         },
         {
           "id": 2,
-          "title": "Taskr",
-          "author": "Michael",
+          "title": "Tasca",
+          "author": "User",
           "timeCreated": getCurrentTime(),
           "dateCreated": getFullDate(),
           "tasks": {
@@ -472,7 +472,7 @@ function App() {
         {
           "id": 3,
           "title": "Wordle Clone",
-          "author": "Michael",
+          "author": "Robert",
           "timeCreated": getCurrentTime(),
           "dateCreated": getFullDate(),
           "tasks": {
@@ -489,9 +489,9 @@ function App() {
         reports: [
             {
                 id: 1,
-                title: "Taskr v1.0.0",
+                title: "Tasca v1.0.0",
                 content:
-                    "Taskr is currently in Beta stage production. Current functions include creating your own projects, adding and updating tasks, and checking messages and reports.",
+                    "Tasca is currently in Beta stage production. Current functions include creating your own projects, adding and updating tasks, and checking messages and reports.",
                 timeCreated: getCurrentTime(),
                 dateCreated: getFullDate(),
                 reportType: "Update",
@@ -511,7 +511,7 @@ function App() {
         {
           "id": 2,
           "title": "Updated Dashboard UI",
-          "content": "Hello User! First, thank you for using Taskr. We hope that you are having a pleasant experience organising your tasks. We have exciting news! The Taskr Dashbard has received a funky makeover from our frontend team to make it easier for you to reference your information more easily. Enjoy!",
+          "content": "Hello User! First, thank you for using Tasca. We hope that you are having a pleasant experience organising your tasks. We have exciting news! The Tasca Dashbard has received a funky makeover from our frontend team to make it easier for you to reference your information more easily. Enjoy!",
           "timeCreated": "17:10",
           "dateCreated": "Friday 12 August, 2022",
           "reportType": "Update",
@@ -552,9 +552,9 @@ function App() {
         messages: [
             {
                 id: 1,
-                title: "Welcome to Taskr!",
-                content: `Hello! Welcome to Taskr - the place to break down your projects into smaller, manageable tasks! Navigate to the 'Projects' page and get started right away! We hope you have a pleasant experience organising your work!`,
-                author: "Botty Bot",
+                title: "Welcome to Tasca!",
+                content: `Hello! Welcome to Tasca - the place to break down your projects into smaller, manageable tasks! Navigate to the 'Projects' page and get started right away! We hope you have a pleasant experience organising your work!`,
+                author: "Botty",
                 timeCreated: getCurrentTime(),
                 dateCreated: getFullDate(),
                 isRead: false,
@@ -563,8 +563,8 @@ function App() {
             {
                 id: 2,
                 title: "Thank you for your support!",
-                content: `Hi, my name is Daniel Healy, and I'm the creator of Taskr. I decided to create this project to get more organised with my own portfolio projects. It was also my way of learning React.js by effectively jumping in at the deep end and learning as I went. If you are here, then I would like to thank you for your support and for taking the time to check out my project! Feel free to connect with me over on Twitter @web_dev_dan (link in the footer at the bottom of the page), as I intend to add more features and improve Taskr in the coming weeks and months. I'd be delighted to hear from you if you have any comments or suggestions.`,
-                author: "Daniel Healy",
+                content: `Hi! I'm Julien, the creator of Tasca. I decided to create this project to get more organised with my own portfolio projects. It was also my way of learning React.js by effectively jumping in at the deep end and learning as I went. If you are here, then I would like to thank you for your support and for taking the time to check out my project! Feel free to connect with me over on Twitter @eggsandbread (link in the footer at the bottom of the page), as I intend to add more features and improve Tasca in the coming weeks and months.`,
+                author: "Julien",
                 timeCreated: getCurrentTime(),
                 dateCreated: getFullDate(),
                 isRead: false,
@@ -574,7 +574,7 @@ function App() {
           "id": 1,
           "title": "Example Message",
           "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
-          "author": "Botty Bot",
+          "author": "Botty",
           "timeCreated": "11:15",
           "dateCreated": "Monday 12 August, 2022",
           "isRead": true,
@@ -583,7 +583,7 @@ function App() {
         {
           "id": 2,
           "title": "Example Message",
-          "author": "Botty Bot",
+          "author": "Botty",
           "timeCreated": '18:30',
           "dateCreated": 'Tuesday 13 August, 2022',
           "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
@@ -593,7 +593,7 @@ function App() {
         {
           "id": 3,
           "title": "Example Message",
-          "author": "Botty Bot",
+          "author": "Botty",
           "timeCreated": '18:30',
           "dateCreated": 'Tuesday 13 August, 2022',
           "content": "Hello, this is some example message content just to check out how it looks once it is rendered in the broswer. Thanks!",
@@ -643,7 +643,7 @@ function App() {
         userData.messages.push({
             id: userData.messages.length + 1,
             title: "New One",
-            author: "Botty Bot",
+            author: "Botty",
             timeCreated: "18:30",
             dateCreated: "Tuesday 13 August, 2022",
             content:

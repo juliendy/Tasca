@@ -11,7 +11,7 @@ function MessageBox({
     isRead,
     isDeleted,
     updateMessageIsRead,
-    deleteMessage
+    deleteMessage,
 }) {
     const [messageIsOpen, setMessageIsOpen] = useState(false);
 

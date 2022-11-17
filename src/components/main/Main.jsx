@@ -35,6 +35,17 @@ function Main({
     updateTaskContentValue,
     togglePriorityButton,
     toggleLikeButton,
+    deleteCommentButton,
+    createNewComment,
+    updateCommentInputValue,
+    commentInputValue,
+    deleteProjectButton,
+    deleteTaskButton,
+    changeTaskStatus,
+    openReports,
+    openMessages,
+    deleteMessage,
+    deleteReport,
 }) {
     return (
         <main className="main">
@@ -52,8 +63,12 @@ function Main({
                             currentPageName={currentPageName}
                             iconClasses="fa-solid fa-shapes"
                         />
-                        <Dashboard />
-                        {/* INCLUDE A HORIZONTAL SCROLL BOX OF PROJECTS? NAME & 3 COLOURED BOXES UNDERNEATH WITH ICONS AND NUMBERS TO INDICATE HOW MANY TODOS, INPROGRESS, COMPLETE ITEMS THERE ARE */}
+                        <Dashboard
+                            userData={userData}
+                            openProjects={openProjects}
+                            openReports={openReports}
+                            openMessages={openMessages}
+                        />
                     </div>
                 )}
                 {currentPageName === "Projects" && (
@@ -80,6 +95,7 @@ function Main({
                         <Reports
                             userData={userData}
                             updateReportIsRead={updateReportIsRead}
+                            deleteReport={deleteReport}
                         />
                     </div>
                 )}
@@ -92,6 +108,7 @@ function Main({
                         <Messages
                             userData={userData}
                             updateMessageIsRead={updateMessageIsRead}
+                            deleteMessage={deleteMessage}
                         />
                     </div>
                 )}
@@ -127,6 +144,7 @@ function Main({
                             asideIsOpen={asideIsOpen}
                             createNewTask={createNewTask}
                             openTaskPage={openTaskPage}
+                            deleteProjectButton={deleteProjectButton}
                         />
                     </div>
                 )}
@@ -143,6 +161,12 @@ function Main({
                             updateTaskContentValue={updateTaskContentValue}
                             togglePriorityButton={togglePriorityButton}
                             toggleLikeButton={toggleLikeButton}
+                            deleteCommentButton={deleteCommentButton}
+                            createNewComment={createNewComment}
+                            updateCommentInputValue={updateCommentInputValue}
+                            commentInputValue={commentInputValue}
+                            deleteTaskButton={deleteTaskButton}
+                            changeTaskStatus={changeTaskStatus}
                         />
                     </div>
                 )}

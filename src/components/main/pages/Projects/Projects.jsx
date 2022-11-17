@@ -54,7 +54,11 @@ function Projects({
                     <div className="projects__overview"></div>
                     {/* Projects List */}
                     <div className="projects__project-list">
-                        {userData.projects.map((project) => {
+                        {[
+                            ...userData.projects.filter(
+                                (project) => project.isDeleted === false
+                            ),
+                        ].map((project) => {
                             return (
                                 <ProjectBox
                                     key={project.id}
@@ -76,7 +80,11 @@ function Projects({
                 </div>
             )}
             {/* No Projects */}
-            {userData.projects.length === 0 && (
+            {[
+                ...userData.projects.filter(
+                    (project) => project.isDeleted === false
+                ),
+            ].length === 0 && (
                 <EmptyNotification
                     icon="fa-solid fa-box-open"
                     text="Looks like you have no projects!"

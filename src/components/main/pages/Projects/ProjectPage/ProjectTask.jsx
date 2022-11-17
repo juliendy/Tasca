@@ -22,11 +22,10 @@ function ProjectTask({
                 onClick={() => openTaskPageClicked(id, taskType)}
                 className="list-item__button btn btn-transparent"
             >
-                {" "}
                 <div className="list-item__top">
                     <h4 className="list-item__title">
                         {title === "" ? "Task" : title}
-                    </h4>{" "}
+                    </h4>
                     <p className="list-item__info">
                         {author}, {dateCreatedShort}
                     </p>
@@ -34,15 +33,24 @@ function ProjectTask({
                         {content === ""
                             ? "Nothing of note for this task..."
                             : content}
-                    </p>{" "}
+                    </p>
                 </div>
                 <div className="list-item__footer">
                     <p className="list-item__tag">
                         #{tag === "" ? "Project" : tag.toUpperCase()}
-                    </p>{" "}
+                    </p>
                     <div className="list-item__comments-btn btn-transparent">
                         <i className="fa-solid fa-message"></i>
-                        <p>{comments.length}</p>
+                        {/* <p>{comments.length}</p> */}
+                        <p>
+                            {
+                                [
+                                    ...comments.filter(
+                                        (task) => task.isDeleted === false
+                                    ),
+                                ].length
+                            }
+                        </p>
                     </div>
                 </div>
             </button>
