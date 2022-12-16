@@ -1,2 +1,2 @@
 # Tasca, a bug-tracking application
-To be updated...
+To be updated soon
